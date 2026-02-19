@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Greater Manchester Stations</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <style>
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+    #map { height: 100vh; }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const map = L.map("map").setView([53.48, -2.24], 10);
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: "&copy; OpenStreetMap contributors"
+    }).addTo(map);
+
+    async function loadStations() {
+      const res = await fetch("./data/stations.geojson");
+      const gj = await res.json();
+
+      const layer = L.geoJSON(gj, {
+        pointToLayer: (f, latlng) => L.circleMarker(latlng, { radius: 6, weight: 1, fillOpacity: 0.9 }),
+        onEachFeature: (f, l) => {
+          const name = f.properties?.name ?? "Station";
+          const crs  = (f.properties?.crs ?? "").toUpperCase();
+
+          // Robust outbound link via official station search:
+          const query = crs || name;
+          const href = `https://www.nationalrail.co.uk/stations/?text=${encodeURIComponent(query)}`;
+
+          l.bindPopup(`
+            <div style="min-width:220px">
+              <div style="font-weight:600">${name}</div>
+              ${crs ? `<div style="color:#666">CRS: ${crs}</div>` : `<div style="color:#666">CRS: (unknown)</div>`}
+              <div style="margin-top:8px">
+                <a href="${href}" target="_blank" rel="noopener">Open National Rail Enquiries</a>
+              </div>
+            </div>
+          `);
+        }
+      }).addTo(map);
+
+      map.fitBounds(layer.getBounds(), { padding: [20,20] });
+    }
+
+    loadStations().catch(err => alert(err.message));
+  </script>
+</body>
+</html>
