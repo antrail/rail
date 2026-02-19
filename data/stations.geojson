@@ -1,0 +1,2859 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-turbo",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2026-02-19T09:44:00Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/673959",
+        "description": "Ardwick Station has a very limited service. Two trains a day run towards the city on Monday to Friday mornings, and two trains away from the city in the evening. No service at weekends.",
+        "name": "Ardwick",
+        "name:ur": "آرڈ وک",
+        "naptan:AtcoCode": "9100ARDWICK",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/adk/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/ardwick",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "ADK",
+        "wikidata": "Q4788330",
+        "wikipedia": "en:Ardwick railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.2132093,
+          53.4711613
+        ]
+      },
+      "id": "node/673959"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/21551301",
+        "name": "East Didsbury",
+        "naptan:AtcoCode": "9100EDIDBRY",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/edy/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/east-didsbury",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "EDY",
+        "wikidata": "Q2517222",
+        "wikipedia": "en:East Didsbury railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.2219984,
+          53.4093155
+        ]
+      },
+      "id": "node/21551301"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/21668335",
+        "name": "Kearsley",
+        "naptan:AtcoCode": "9100KEARSLY",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/ksl/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/kearsley-manchester",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "KSL",
+        "ref:tiploc": "KEARSLY",
+        "source": "npe",
+        "train": "yes",
+        "wikidata": "Q3464698",
+        "wikipedia": "en:Kearsley railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.3754896,
+          53.5445245
+        ]
+      },
+      "id": "node/21668335"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/21668347",
+        "name": "Clifton",
+        "naptan:AtcoCode": "9100CLTN",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/cli/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/clifton-manchester",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "CLI",
+        "ref:tiploc": "CLTN",
+        "train": "yes",
+        "wikidata": "Q2708119",
+        "wikipedia": "en:Clifton railway station (Greater Manchester)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.3141164,
+          53.5223155
+        ]
+      },
+      "id": "node/21668347"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/22404971",
+        "air_conditioning": "no",
+        "internet_access": "no",
+        "name": "Blackrod",
+        "naptan:AtcoCode": "9100BLRD",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/blk/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/blackrod",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "BLK",
+        "ref:tiploc": "BLRD",
+        "train": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q1820371",
+        "wikipedia": "en:Blackrod railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.5698672,
+          53.5912146
+        ]
+      },
+      "id": "node/22404971"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/24832755",
+        "name": "Bryn",
+        "naptan:AtcoCode": "9100BRYN",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/byn/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/bryn",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "BYN",
+        "source": "NPE",
+        "train": "yes",
+        "wikidata": "Q2273170",
+        "wikipedia": "en:Bryn railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.6476163,
+          53.4997249
+        ]
+      },
+      "id": "node/24832755"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/25295170",
+        "name": "Gatley",
+        "naptan:AtcoCode": "9100GATLEY",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/gty/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/gatley",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "GTY",
+        "wikidata": "Q5527447",
+        "wikipedia": "en:Gatley railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.2306618,
+          53.3932392
+        ]
+      },
+      "id": "node/25295170"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/25422814",
+        "addr:postcode": "M30 0DN",
+        "addr:street": "St Mary's Road",
+        "name": "Eccles",
+        "name:lt": "Eklsas",
+        "naptan:AtcoCode": "9100ECCLES",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/ecc/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/eccles-manchester",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "ECC",
+        "ref:tiploc": "ECCLES",
+        "train": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2890052",
+        "wikipedia": "en:Eccles railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.3340515,
+          53.4855266
+        ]
+      },
+      "id": "node/25422814"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/27016810",
+        "name": "Summerseat",
+        "operator": "East Lancashire Railway",
+        "operator:wikidata": "Q5328784",
+        "public_transport": "station",
+        "railway": "station",
+        "usage": "tourism",
+        "website": "https://www.eastlancsrailway.org.uk/plan-your-day-out/stations/summerseat/",
+        "wikidata": "Q7637658"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.3134126,
+          53.6279534
+        ]
+      },
+      "id": "node/27016810"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/27016832",
+        "name": "Burrs Country Park Halt",
+        "network": "East Lancashire Railway",
+        "note": "Opened to the public on Jan 1st 2017",
+        "operator": "East Lancashire Railway",
+        "operator:wikidata": "Q5328784",
+        "public_transport": "station",
+        "railway": "station",
+        "train": "yes",
+        "usage": "tourism",
+        "website": "https://www.eastlancsrailway.org.uk/plan-your-day-out/stations/burrs-country-park/",
+        "wheelchair": "yes",
+        "wikidata": "Q28197680"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.3032556,
+          53.6113055
+        ]
+      },
+      "id": "node/27016832"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/27016927",
+        "name": "Bury, Bolton Street",
+        "naptan:AtcoCode": "940GZZELBBS",
+        "operator": "East Lancashire Railway",
+        "operator:wikidata": "Q5328784",
+        "public_transport": "station",
+        "railway": "station",
+        "train": "yes",
+        "usage": "tourism",
+        "website": "https://www.eastlancsrailway.org.uk/plan-your-day-out/stations/bury/",
+        "wheelchair": "yes",
+        "wikidata": "Q5001073"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.3003018,
+          53.5929094
+        ]
+      },
+      "id": "node/27016927"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/27038426",
+        "name": "Ramsbottom",
+        "naptan:AtcoCode": "940GZZELRAM",
+        "operator": "East Lancashire Railway",
+        "operator:wikidata": "Q5328784",
+        "public_transport": "station",
+        "railway": "station",
+        "train": "yes",
+        "usage": "tourism",
+        "website": "https://www.eastlancsrailway.org.uk/plan-your-day-out/stations/ramsbottom/",
+        "wikidata": "Q7290149"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.3146606,
+          53.6473535
+        ]
+      },
+      "id": "node/27038426"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/29689132",
+        "name": "Bramhall",
+        "naptan:AtcoCode": "9100BMHL",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/bml/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/bramhall",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "BML",
+        "wikidata": "Q2352421",
+        "wikipedia": "en:Bramhall railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.1623117,
+          53.3601721
+        ]
+      },
+      "id": "node/29689132"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/29927228",
+        "name": "Denton",
+        "naptan:AtcoCode": "9100DNTON",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/dtn/",
+        "network:wikidata": "Q26334",
+        "note": "One train per week: Fridays at 09:31",
+        "operator": "Northern Trains",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "DTN",
+        "ref:stanox": "32520",
+        "ref:tiploc": "DNTON",
+        "train": "yes",
+        "wikidata": "Q5259635",
+        "wikipedia": "en:Denton railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.1309424,
+          53.4574018
+        ]
+      },
+      "id": "node/29927228"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/29927246",
+        "name": "Reddish South",
+        "naptan:AtcoCode": "9100REDISHS",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/rds/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "RDS",
+        "source": "NPE",
+        "train": "yes",
+        "wikidata": "Q7305639",
+        "wikipedia": "en:Reddish South railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.1586843,
+          53.4359636
+        ]
+      },
+      "id": "node/29927246"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/29947059",
+        "alt_name": "Middlewood (Lower)",
+        "name": "Middlewood",
+        "naptan:AtcoCode": "9100MDWD",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/mdl/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/middlewood",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "MDL",
+        "wikidata": "Q1922273",
+        "wikimedia_commons": "Category:Middlewood railway station",
+        "wikipedia": "en:Middlewood railway station",
+        "wikipedia:en": "Middlewood railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.0835284,
+          53.3600557
+        ]
+      },
+      "id": "node/29947059"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/30416929",
+        "name": "Pemberton",
+        "naptan:AtcoCode": "9100PBRT",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/pem/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/pemberton",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "PEM",
+        "source": "npe",
+        "train": "yes",
+        "wikidata": "Q2729763",
+        "wikipedia": "en:Pemberton railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.6695158,
+          53.530526
+        ]
+      },
+      "id": "node/30416929"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/30416942",
+        "name": "Wigan Wallgate",
+        "naptan:AtcoCode": "9100WIGANWL",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/wgw/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/wigan-wallgate",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "WGW",
+        "source:name": "local knowledge",
+        "train": "yes",
+        "wikidata": "Q7999554",
+        "wikipedia": "en:Wigan Wallgate railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.6342351,
+          53.5450582
+        ]
+      },
+      "id": "node/30416942"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/30581712",
+        "name": "Orrell",
+        "naptan:AtcoCode": "9100ORRELL",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/orr/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/orrell",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "ORR",
+        "source": "npe",
+        "train": "yes",
+        "wikidata": "Q2939923",
+        "wikipedia": "en:Orrell railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.7091136,
+          53.53016
+        ]
+      },
+      "id": "node/30581712"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/35347919",
+        "name": "Broadbottom",
+        "naptan:AtcoCode": "9100BRBM",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/bdb/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/broadbottom",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "BDB",
+        "wikidata": "Q2634328",
+        "wikipedia": "en:Broadbottom railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.0160042,
+          53.4407902
+        ]
+      },
+      "id": "node/35347919"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/35347920",
+        "name": "Hattersley",
+        "naptan:AtcoCode": "9100HATRSLY",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/hty/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/hattersley",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "HTY",
+        "wikidata": "Q2196766",
+        "wikipedia": "en:Hattersley railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.039436,
+          53.4449376
+        ]
+      },
+      "id": "node/35347920"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/35347926",
+        "name": "Godley",
+        "naptan:AtcoCode": "9100GODLY",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/gdl/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/godley",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "GDL",
+        "wheelchair": "no",
+        "wikidata": "Q2288400",
+        "wikipedia": "en:Godley railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.0556364,
+          53.4522488
+        ]
+      },
+      "id": "node/35347926"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/35481662",
+        "name": "Woodley",
+        "naptan:AtcoCode": "9100WOODLEY",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/wly/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/woodley",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "WLY",
+        "source": "NPE",
+        "wikidata": "Q8033064",
+        "wikipedia": "en:Woodley railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.0928676,
+          53.4291998
+        ]
+      },
+      "id": "node/35481662"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/35484410",
+        "name": "Rose Hill Marple",
+        "naptan:AtcoCode": "9100ROHL",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/rsh/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/rose-hill-marple",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "RSH",
+        "source": "NPE",
+        "train": "yes",
+        "wikidata": "Q5449343"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.0765086,
+          53.3960432
+        ]
+      },
+      "id": "node/35484410"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/35486041",
+        "name": "Hyde Central",
+        "naptan:AtcoCode": "9100HYDEC",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/hyc/",
+        "network:wikidata": "Q26334",
+        "old_name": "Hyde",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/hyde-central",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "HYC",
+        "source": "NPE",
+        "train": "yes",
+        "wikidata": "Q2623426",
+        "wikipedia": "en:Hyde Central railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.0850769,
+          53.4513383
+        ]
+      },
+      "id": "node/35486041"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/92882952",
+        "name": "Burnage",
+        "naptan:AtcoCode": "9100BAGE",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/bna/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/burnage",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "BNA",
+        "wheelchair": "yes",
+        "wikidata": "Q4999606",
+        "wikipedia": "en:Burnage railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.2151579,
+          53.4221262
+        ]
+      },
+      "id": "node/92882952"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/253890162",
+        "name": "Hyde North",
+        "naptan:AtcoCode": "9100HYDEN",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/hyt/",
+        "network:wikidata": "Q26334",
+        "old_name": "Hyde Junction",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/hyde-north",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "HYT",
+        "source": "NPE",
+        "wikidata": "Q13528479",
+        "wikipedia": "en:Hyde North railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.0850338,
+          53.4644638
+        ]
+      },
+      "id": "node/253890162"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/255947227",
+        "name": "Bromley Cross",
+        "naptan:AtcoCode": "9100BRMCRSS",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/bmc/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/bromley-cross-lancs",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "BMC",
+        "source": "NPE",
+        "train": "yes",
+        "wikidata": "Q3921315",
+        "wikipedia": "en:Bromley Cross railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.4108352,
+          53.6139542
+        ]
+      },
+      "id": "node/255947227"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/255951095",
+        "name": "Hall i' th' Wood",
+        "naptan:AtcoCode": "9100HITW",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/hid/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/hall-i-th-wood",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "HID",
+        "source": "knowledge",
+        "wikidata": "Q2311804",
+        "wikipedia": "en:Hall i' th' Wood railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.4130759,
+          53.5974456
+        ]
+      },
+      "id": "node/255951095"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/292004869",
+        "name": "Navigation Road",
+        "naptan:AtcoCode": "9100NAVGTNR",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/nvr/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/navigation-road",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "NVR",
+        "train": "yes",
+        "wikidata": "Q1998240",
+        "wikipedia": "en:Navigation Road station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.3432686,
+          53.3957446
+        ]
+      },
+      "id": "node/292004869"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/446424282",
+        "name": "Cheadle Hulme",
+        "naptan:AtcoCode": "9100CHDH",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/chu/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/cheadle-hulme",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "CHU",
+        "wikidata": "Q5088802",
+        "wikipedia": "en:Cheadle Hulme railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.1883499,
+          53.3760261
+        ]
+      },
+      "id": "node/446424282"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/465239559",
+        "name": "Swinton (Manchester)",
+        "naptan:AtcoCode": "9100SWNT",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/snn/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/swinton-manchester",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "SNN",
+        "train": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2685761",
+        "wikipedia": "en:Swinton railway station (Greater Manchester)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.336998,
+          53.5148082
+        ]
+      },
+      "id": "node/465239559"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/910940825",
+        "loc_name": "Ashton",
+        "name": "Ashton-under-Lyne",
+        "name:ur": "ایشٹن انڈر لائن",
+        "naptan:AtcoCode": "9100ASHONUL",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/ahn/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/ashton-under-lyne",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "AHN",
+        "source": "OS OpenData StreetView",
+        "wikidata": "Q2093891",
+        "wikipedia": "en:Ashton-under-Lyne railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.0937021,
+          53.4912163
+        ]
+      },
+      "id": "node/910940825"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1305070561",
+        "name": "Wigan North Western",
+        "naptan:AtcoCode": "9100WIGANNW",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/wgn/",
+        "network:wikidata": "Q26334",
+        "operator": "Avanti West Coast",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "WGN",
+        "train": "yes",
+        "wikidata": "Q2186551",
+        "wikipedia": "en:Wigan North Western railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.632996,
+          53.5433996
+        ]
+      },
+      "id": "node/1305070561"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1765708615",
+        "name": "Heywood",
+        "naptan:AtcoCode": "940GZZELHWD",
+        "operator": "East Lancashire Railway",
+        "operator:wikidata": "Q5328784",
+        "owner": "East Lancashire Railway",
+        "public_transport": "station",
+        "railway": "station",
+        "source": "npe",
+        "train": "yes",
+        "usage": "tourism",
+        "website": "https://www.eastlancsrailway.org.uk/plan-your-day-out/stations/heywood/",
+        "wikidata": "Q12060004"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.2070104,
+          53.589009
+        ]
+      },
+      "id": "node/1765708615"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1843114721",
+        "name": "Mills Hill",
+        "naptan:AtcoCode": "9100MLSHILL",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/mih/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/mills-hill-manchester",
+        "operator:wikidata": "Q85789775",
+        "platforms": "2",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "MIH",
+        "ref:stanox": "31049",
+        "ref:tiploc": "MLSHILL",
+        "train": "yes",
+        "wikidata": "Q2085063",
+        "wikipedia": "en:Mills Hill railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.1714727,
+          53.5508557
+        ]
+      },
+      "id": "node/1843114721"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2412405110",
+        "addr:city": "Bolton",
+        "addr:street": "Trinity Street",
+        "name": "Bolton",
+        "naptan:AtcoCode": "9100BOLTON",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/bon/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/bolton",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "BON",
+        "toilets:wheelchair": "yes",
+        "wheelchair": "yes",
+        "wheelchair:description": "Lifts to all platforms, helpful staff will fetch a ramp to your train.",
+        "wikidata": "Q112080782",
+        "wikipedia": "en:Bolton Interchange"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.4251259,
+          53.5735158
+        ]
+      },
+      "id": "node/2412405110"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2606101574",
+        "name": "Walker Gardens",
+        "network": "Haigh Woodland Park Miniature Railway",
+        "operator": "Wigan District Model Engineering Society",
+        "public_transport": "station",
+        "railway": "station",
+        "usage": "tourism"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.6032062,
+          53.5712017
+        ]
+      },
+      "id": "node/2606101574"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2891607595",
+        "name": "Mossley",
+        "naptan:AtcoCode": "9100MOSSLEY",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/msl/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/mossley-manchester",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "MSL",
+        "wikidata": "Q1986726",
+        "wikipedia": "en:Mossley railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.041538,
+          53.5150389
+        ]
+      },
+      "id": "node/2891607595"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3696875552",
+        "name": "Flowery Field",
+        "naptan:AtcoCode": "9100FLWRYFD",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/flf/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/flowery-field",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "FLF",
+        "wikidata": "Q2858764",
+        "wikipedia": "en:Flowery Field railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.0801143,
+          53.4613904
+        ]
+      },
+      "id": "node/3696875552"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3713652217",
+        "name": "Littleborough",
+        "naptan:AtcoCode": "9100LITLBRO",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/ltl/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/littleborough",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "LTL",
+        "source": "npe",
+        "train": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2111684",
+        "wikipedia": "en:Littleborough railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.0950109,
+          53.6427541
+        ]
+      },
+      "id": "node/3713652217"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3713655104",
+        "name": "Moston",
+        "naptan:AtcoCode": "9100MSTN",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/mso/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/moston",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "MSO",
+        "source": "NPE",
+        "wikidata": "Q6916992",
+        "wikipedia": "en:Moston railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.1710273,
+          53.5232522
+        ]
+      },
+      "id": "node/3713655104"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3713659400",
+        "name": "Smithy Bridge",
+        "naptan:AtcoCode": "9100SMBG",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/smb/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/smithy-bridge",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "SMB",
+        "source": "npe",
+        "train": "yes",
+        "wikidata": "Q2490973",
+        "wikipedia": "en:Smithy Bridge railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.1140606,
+          53.6328465
+        ]
+      },
+      "id": "node/3713659400"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3713687530",
+        "name": "Gathurst",
+        "naptan:AtcoCode": "9100GATHRST",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/gst/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/gathurst",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "GST",
+        "source": "npe",
+        "wheelchair": "yes",
+        "wikidata": "Q2311154",
+        "wikipedia": "en:Gathurst railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.6938146,
+          53.5593822
+        ]
+      },
+      "id": "node/3713687530"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3715250479",
+        "name": "Brinnington",
+        "naptan:AtcoCode": "9100BRNGTN",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/bnt/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/brinnington",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "BNT",
+        "wikidata": "Q945601",
+        "wikipedia": "en:Brinnington railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.1341235,
+          53.4319627
+        ]
+      },
+      "id": "node/3715250479"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3715250498",
+        "name": "Reddish North",
+        "naptan:AtcoCode": "9100REDISHN",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/rdn/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/reddish-north",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "RDN",
+        "wheelchair": "limited",
+        "wikidata": "Q4412893",
+        "wikipedia": "en:Reddish North railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.1567562,
+          53.4497429
+        ]
+      },
+      "id": "node/3715250498"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3754534935",
+        "name": "Ryder Brow",
+        "naptan:AtcoCode": "9100RYDRBRW",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/rrb/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/ryder-brow",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "RRB",
+        "train": "yes",
+        "wikidata": "Q2212798",
+        "wikipedia": "en:Ryder Brow railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.1739555,
+          53.4569538
+        ]
+      },
+      "id": "node/3754534935"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4978929124",
+        "name": "Castleton",
+        "naptan:AtcoCode": "9100CSTL",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/cas/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/castleton-manchester",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "CAS",
+        "source": "NPE",
+        "train": "yes",
+        "wikidata": "Q3341196",
+        "wikipedia": "en:Castleton railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.1777231,
+          53.5927444
+        ]
+      },
+      "id": "node/4978929124"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5064005964",
+        "iata": "QQM",
+        "name": "Manchester Piccadilly",
+        "name:cy": "Piccadilly Manceinion",
+        "name:ur": "مانچسٹر پکاڈلی",
+        "naptan:AtcoCode": "9100MNCRPIC",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/man/",
+        "network:wikidata": "Q26334",
+        "operator": "Network Rail",
+        "platforms": "14",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "MAN",
+        "smoking": "no",
+        "train": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q600367",
+        "wikipedia": "en:Manchester Piccadilly station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.2301402,
+          53.4772197
+        ]
+      },
+      "id": "node/5064005964"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5064011790",
+        "addr:city": "Manchester",
+        "addr:housename": "Oxford Road Station",
+        "addr:postcode": "M1 6FU",
+        "addr:street": "Oxford Road Station Approach",
+        "alt_name:ur": "مانچسٹر اوکسفورڈ روڈ",
+        "alt_name_2:ur": "مانچسٹر اوکسفرڈ روڈ",
+        "internet_access": "no",
+        "name": "Manchester Oxford Road",
+        "name:ur": "مانچسٹر آکسفورڈ روڈ",
+        "naptan:AtcoCode": "9100MNCROXR",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/mco/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/manchester-oxford-road",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "MCO",
+        "ref:tiploc": "MNCROXR",
+        "toilets": "yes",
+        "toilets:wheelchair": "yes",
+        "train": "yes",
+        "website": "https://www.nationalrail.co.uk/stations/mco/",
+        "wheelchair": "yes",
+        "wikidata": "Q1859538",
+        "wikimedia_commons": "Category:Manchester_Oxford_Road_railway_station",
+        "wikipedia": "en:Manchester Oxford Road railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.2422762,
+          53.4737777
+        ]
+      },
+      "id": "node/5064011790"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5064014760",
+        "name": "Deansgate",
+        "name:ur": "ڈینز گیٹ",
+        "naptan:AtcoCode": "9100MNCRDGT",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/dgt/",
+        "network:wikidata": "Q26334",
+        "old_name": "Knott Mill Station",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/deansgate",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "DGT",
+        "ref:tiploc": "MNCRDGT",
+        "train": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q1620954",
+        "wikipedia": "en:Deansgate railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.251063,
+          53.4740961
+        ]
+      },
+      "id": "node/5064014760"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5064022723",
+        "name": "Salford Central",
+        "name:ur": "سیلفورڈ سینٹرل",
+        "naptan:AtcoCode": "9100SLFDORD",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/sfd/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/salford-central",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "SFD",
+        "train": "yes",
+        "wikidata": "Q2194900",
+        "wikipedia": "en:Salford Central railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.2555159,
+          53.4828774
+        ]
+      },
+      "id": "node/5064022723"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5064029501",
+        "name": "Manchester Victoria",
+        "name:ur": "مانچسٹر وکٹوریہ",
+        "naptan:AtcoCode": "9100MNCRVIC",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/mcv/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/manchester-victoria",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "MCV",
+        "ref:tiploc": "MNCRVIC",
+        "train": "yes",
+        "wikidata": "Q1859573",
+        "wikipedia": "en:Manchester Victoria station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.2424846,
+          53.4879748
+        ]
+      },
+      "id": "node/5064029501"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5348955658",
+        "name": "Rochdale",
+        "naptan:AtcoCode": "9100RCHDALE",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/rcd/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/rochdale",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "RCD",
+        "source": "npe",
+        "train": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q6746193",
+        "wikipedia": "en:Rochdale railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.1528351,
+          53.6105726
+        ]
+      },
+      "id": "node/5348955658"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5356293946",
+        "name": "Stockport",
+        "name:ur": "اسٹاک پورٹ",
+        "naptan:AtcoCode": "9100STKP",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/spt/",
+        "network:wikidata": "Q26334",
+        "operator": "Avanti West Coast",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "SPT",
+        "train": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q4399720",
+        "wikipedia": "en:Stockport railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.1630435,
+          53.4054501
+        ]
+      },
+      "id": "node/5356293946"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5374842618",
+        "name": "Guide Bridge",
+        "naptan:AtcoCode": "9100GIDB",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/gui/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/guide-bridge",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "GUI",
+        "source": "npe",
+        "train": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q1854597",
+        "wikipedia": "en:Guide Bridge railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.1132396,
+          53.4745643
+        ]
+      },
+      "id": "node/5374842618"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5383083087",
+        "name": "Newton for Hyde",
+        "naptan:AtcoCode": "9100NWTH",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/nwn/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/newton-for-hyde",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "NWN",
+        "wheelchair": "yes",
+        "wikidata": "Q2138827",
+        "wikipedia": "en:Newton for Hyde railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.067531,
+          53.4567001
+        ]
+      },
+      "id": "node/5383083087"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5392831639",
+        "name": "Lostock",
+        "naptan:AtcoCode": "9100LOSTCKP",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/lot/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/lostock",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "LOT",
+        "train": "yes",
+        "wikidata": "Q6684520",
+        "wikipedia": "en:Lostock railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.494764,
+          53.5727921
+        ]
+      },
+      "id": "node/5392831639"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6012937549",
+        "name": "Stalybridge",
+        "naptan:AtcoCode": "9100SBYD",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/syb/",
+        "network:wikidata": "Q26334",
+        "operator": "TransPennine Express",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "SYB",
+        "source": "NPE",
+        "wheelchair": "yes",
+        "wikidata": "Q2078930",
+        "wikipedia": "en:Stalybridge railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.0642227,
+          53.4841386
+        ]
+      },
+      "id": "node/6012937549"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6178577209",
+        "name": "Westhoughton",
+        "naptan:AtcoCode": "9100WSTHOTN",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/whg/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/westhoughton",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "WHG",
+        "source": "npe",
+        "train": "yes",
+        "wikidata": "Q2751556",
+        "wikipedia": "en:Westhoughton railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.523221,
+          53.5558849
+        ]
+      },
+      "id": "node/6178577209"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6212935276",
+        "name": "Horwich Parkway",
+        "naptan:AtcoCode": "9100HORWICH",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/hwi/",
+        "network:wikidata": "Q26334",
+        "operator": "Transport for Greater Manchester",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "HWI",
+        "ref:tiploc": "HORWICH",
+        "wikidata": "Q2707094",
+        "wikipedia": "en:Horwich Parkway railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.5397317,
+          53.5779831
+        ]
+      },
+      "id": "node/6212935276"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6283856444",
+        "name": "Moses Gate",
+        "naptan:AtcoCode": "9100MSGT",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/mss/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/moses-gate",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "MSS",
+        "ref:tiploc": "MSGT",
+        "train": "yes",
+        "wikidata": "Q2682095",
+        "wikipedia": "en:Moses Gate railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.4015572,
+          53.5562667
+        ]
+      },
+      "id": "node/6283856444"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6284257125",
+        "name": "Farnworth",
+        "naptan:AtcoCode": "9100FRNW",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/fnw/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/farnworth",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "FNW",
+        "ref:tiploc": "FRNW",
+        "source": "NPE",
+        "train": "yes",
+        "wikidata": "Q2043682",
+        "wikipedia": "en:Farnworth railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.3885326,
+          53.5504599
+        ]
+      },
+      "id": "node/6284257125"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6331331026",
+        "name": "Romiley",
+        "naptan:AtcoCode": "9100ROMILEY",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/rml/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/romiley",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "RML",
+        "source": "NPE",
+        "toilets:wheelchair": "no",
+        "wheelchair": "yes",
+        "wikidata": "Q2600055",
+        "wikipedia": "en:Romiley railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.0893199,
+          53.4140086
+        ]
+      },
+      "id": "node/6331331026"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6331331034",
+        "name": "Bredbury",
+        "naptan:AtcoCode": "9100BREDBRY",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/bdy/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/bredbury",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "BDY",
+        "source": "NPE",
+        "wikidata": "Q2018710",
+        "wikipedia": "en:Bredbury railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.1104918,
+          53.4230377
+        ]
+      },
+      "id": "node/6331331034"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6331418874",
+        "name": "Ashburys",
+        "naptan:AtcoCode": "9100ASHBRYS",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/aby/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/ashburys",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "ABY",
+        "source": "NPE",
+        "wheelchair": "no",
+        "wikidata": "Q1940660",
+        "wikipedia": "en:Ashburys railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.1952305,
+          53.4718438
+        ]
+      },
+      "id": "node/6331418874"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6331418876",
+        "name": "Belle Vue",
+        "naptan:AtcoCode": "9100BLLVUE",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/blv/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/belle-vue",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "BLV",
+        "source": "Bing+OSSV",
+        "train": "yes",
+        "wikidata": "Q4367472",
+        "wikipedia": "en:Belle Vue railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.1800733,
+          53.4614732
+        ]
+      },
+      "id": "node/6331418876"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6331419604",
+        "name": "Strines",
+        "naptan:AtcoCode": "9100STRINES",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/srn/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/strines",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "SRN",
+        "source": "NPE",
+        "wikidata": "Q2551282",
+        "wikipedia": "en:Strines railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.0333062,
+          53.374569
+        ]
+      },
+      "id": "node/6331419604"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6331419609",
+        "name": "Marple",
+        "naptan:AtcoCode": "9100MARPLE",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/mpl/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/marple",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "MPL",
+        "source": "NPE",
+        "train": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2488664",
+        "wikipedia": "en:Marple railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.0572003,
+          53.4006474
+        ]
+      },
+      "id": "node/6331419609"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6334988573",
+        "name": "Altrincham",
+        "naptan:AtcoCode": "9100ALTRNHM",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/alt/",
+        "network:wikidata": "Q26334",
+        "old_name": "Altrincham and Bowdon",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/altrincham",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "ALT",
+        "ref:tiploc": "ALTRNHM",
+        "train": "yes",
+        "wikidata": "Q1921455",
+        "wikipedia": "en:Altrincham Interchange"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.3470824,
+          53.3876561
+        ]
+      },
+      "id": "node/6334988573"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6334988574",
+        "name": "Hale",
+        "naptan:AtcoCode": "9100HALE",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/hal/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/hale-manchester",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "HAL",
+        "wheelchair": "yes",
+        "wikidata": "Q5641446",
+        "wikipedia": "en:Hale railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.3474975,
+          53.3785218
+        ]
+      },
+      "id": "node/6334988574"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6367868937",
+        "name": "Gorton",
+        "naptan:AtcoCode": "9100GORTON",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/gto/",
+        "network:wikidata": "Q26334",
+        "old_name": "Gorton and Openshaw",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/gorton",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "GTO",
+        "source": "NPE",
+        "train": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2444053",
+        "wikipedia": "en:Gorton railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.1677485,
+          53.4689321
+        ]
+      },
+      "id": "node/6367868937"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6367868938",
+        "name": "Fairfield",
+        "naptan:AtcoCode": "9100FRFD",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/frf/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/fairfield",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "FRF",
+        "source": "NPE",
+        "train": "yes",
+        "wikidata": "Q3190561",
+        "wikipedia": "en:Fairfield railway station (England)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.1449235,
+          53.4713232
+        ]
+      },
+      "id": "node/6367868938"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6367868939",
+        "addr:city": "Oldham",
+        "addr:country": "GB",
+        "addr:housename": "Greenfield Station",
+        "addr:postcode": "OL3 7JZ",
+        "addr:street": "Chew Valley Road",
+        "addr:village": "Greenfield",
+        "departures_board": "realtime",
+        "name": "Greenfield",
+        "naptan:AtcoCode": "9100GFLD",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/gnf/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/greenfield",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "GNF",
+        "source": "NPE",
+        "wheelchair": "limited",
+        "wikidata": "Q1954239",
+        "wikipedia": "en:Greenfield railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.0142364,
+          53.5387491
+        ]
+      },
+      "id": "node/6367868939"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6408750135",
+        "name": "Heaton Chapel",
+        "name:ur": "ہیٹن چیپل",
+        "naptan:AtcoCode": "9100HTCP",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/htc/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/heaton-chapel",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "HTC",
+        "train": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2056826",
+        "wikipedia": "en:Heaton Chapel railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.1792895,
+          53.4259927
+        ]
+      },
+      "id": "node/6408750135"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6414583138",
+        "name": "Trafford Park",
+        "naptan:AtcoCode": "9100TRFDPK",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/tra/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/trafford-park",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "TRA",
+        "train": "yes",
+        "wikidata": "Q3932222",
+        "wikipedia": "en:Trafford Park railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.3116958,
+          53.4547767
+        ]
+      },
+      "id": "node/6414583138"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6414583139",
+        "internet_access": "no",
+        "name": "Humphrey Park",
+        "naptan:AtcoCode": "9100HMPHRYP",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/hup/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/humphrey-park",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "HUP",
+        "train": "yes",
+        "wikidata": "Q1957035",
+        "wikipedia": "en:Humphrey Park railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.3272609,
+          53.4523337
+        ]
+      },
+      "id": "node/6414583139"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6414583140",
+        "name": "Flixton",
+        "naptan:AtcoCode": "9100FLIXTON",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/fli/",
+        "network:wikidata": "Q26334",
+        "opening_hours": "Mo-Fr 06:25-13:45",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/flixton",
+        "operator:wikidata": "Q85789775",
+        "platforms": "2",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "FLI",
+        "train": "yes",
+        "wheelchair": "limited",
+        "wikidata": "Q2623299",
+        "wikipedia": "en:Flixton railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.3839554,
+          53.4437085
+        ]
+      },
+      "id": "node/6414583140"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6414583141",
+        "name": "Chassen Road",
+        "naptan:AtcoCode": "9100CHASNRD",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/csr/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/chassen-road",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "CSR",
+        "train": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2312347",
+        "wikipedia": "en:Chassen Road railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.3678327,
+          53.4461647
+        ]
+      },
+      "id": "node/6414583141"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6414583142",
+        "name": "Urmston",
+        "name:lt": "Ermstonas",
+        "naptan:AtcoCode": "9100URMSTON",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/urm/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/urmston",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "URM",
+        "train": "yes",
+        "wheelchair": "limited",
+        "wikidata": "Q2753494",
+        "wikipedia": "en:Urmston railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.3536565,
+          53.4483208
+        ]
+      },
+      "id": "node/6414583142"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6414583147",
+        "name": "Irlam",
+        "naptan:AtcoCode": "9100IRLAM",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/irl/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/irlam",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "IRL",
+        "source": "NPE",
+        "train": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2539964",
+        "wikipedia": "en:Irlam railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.4328454,
+          53.4342044
+        ]
+      },
+      "id": "node/6414583147"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6416944403",
+        "name": "Levenshulme",
+        "naptan:AtcoCode": "9100LVHM",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/lvm/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/levenshulme",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "LVM",
+        "wheelchair": "no",
+        "wikidata": "Q1995485",
+        "wikipedia": "en:Levenshulme railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.1929575,
+          53.4449044
+        ]
+      },
+      "id": "node/6416944403"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6439021762",
+        "name": "Davenport",
+        "naptan:AtcoCode": "9100DAVNPRT",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/dvn/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/davenport",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "DVN",
+        "source": "NPE",
+        "wheelchair": "yes",
+        "wikidata": "Q2360226",
+        "wikipedia": "en:Davenport railway station (England)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.1521585,
+          53.390734
+        ]
+      },
+      "id": "node/6439021762"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6439021763",
+        "name": "Woodsmoor",
+        "naptan:AtcoCode": "9100WMOR",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/wsr/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/woodsmoor",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "WSR",
+        "wheelchair": "yes",
+        "wikidata": "Q2604107",
+        "wikipedia": "en:Woodsmoor railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.1412433,
+          53.3861409
+        ]
+      },
+      "id": "node/6439021763"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6439021764",
+        "name": "Hazel Grove",
+        "naptan:AtcoCode": "9100HAZL",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/haz/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/hazel-grove",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "HAZ",
+        "source": "NPE",
+        "wikidata": "Q1960019",
+        "wikipedia": "en:Hazel Grove railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.1221506,
+          53.3774667
+        ]
+      },
+      "id": "node/6439021764"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6569339484",
+        "name": "Daisy Hill",
+        "naptan:AtcoCode": "9100DAISYH",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/dsy/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/daisy-hill",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "DSY",
+        "train": "yes",
+        "uic_ref": "7000641",
+        "wheelchair": "no",
+        "wikidata": "Q1822126",
+        "wikipedia": "en:Daisy Hill railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.5151778,
+          53.539359
+        ]
+      },
+      "id": "node/6569339484"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6581364396",
+        "name": "Moorside",
+        "naptan:AtcoCode": "9100MRSD",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/msd/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/moorside",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "MSD",
+        "source": "npe",
+        "train": "yes",
+        "wikidata": "Q3466304",
+        "wikipedia": "en:Moorside railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.3527491,
+          53.5163626
+        ]
+      },
+      "id": "node/6581364396"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6581364398",
+        "internet_access": "no",
+        "name": "Walkden",
+        "naptan:AtcoCode": "9100WALKDEN",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/wkd/",
+        "network:wikidata": "Q26334",
+        "old_name": "Walkden High Level",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/walkden",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "WKD",
+        "source": "npe",
+        "train": "yes",
+        "wikidata": "Q2491736",
+        "wikipedia": "en:Walkden railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.395748,
+          53.5197861
+        ]
+      },
+      "id": "node/6581364398"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6581364399",
+        "name": "Atherton",
+        "naptan:AtcoCode": "9100ATHERTN",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/atn/",
+        "network:wikidata": "Q26334",
+        "old_name": "Atherton Central",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/atherton",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "ATN",
+        "source": "NPE",
+        "train": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2474672",
+        "wikipedia": "en:Atherton railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.4778339,
+          53.5290757
+        ]
+      },
+      "id": "node/6581364399"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6661444856",
+        "addr:city": "Manchester",
+        "addr:postcode": "M90 3RR",
+        "name": "Manchester Airport",
+        "naptan:AtcoCode": "9100MNCRIAP",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/mia/",
+        "network:wikidata": "Q26334",
+        "operator": "TransPennine Express",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "MIA",
+        "train": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2453867",
+        "wikipedia": "en:Manchester Airport station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.2720385,
+          53.365183
+        ]
+      },
+      "id": "node/6661444856"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7156706375",
+        "name": "Salford Crescent",
+        "naptan:AtcoCode": "9100SLFDCT",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/sld/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/salford-crescent",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "SLD",
+        "ref:tiploc": "SLFDCT",
+        "train": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2084487",
+        "wikipedia": "en:Salford Crescent railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.275711,
+          53.4862309
+        ]
+      },
+      "id": "node/7156706375"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7566962252",
+        "internet_access": "no",
+        "name": "Hall Drive",
+        "network": "Haigh Woodland Park Miniature Railway",
+        "operator": "Wigan District Model Engineering Society",
+        "public_transport": "station",
+        "railway": "station",
+        "usage": "tourism"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.6047757,
+          53.5689612
+        ]
+      },
+      "id": "node/7566962252"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8257336106",
+        "name": "Hag Fold",
+        "naptan:AtcoCode": "9100HAGFOLD",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/hgf/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/hag-fold",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "HGF",
+        "wikidata": "Q2022284",
+        "wikipedia": "en:Hag Fold railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.4938302,
+          53.5335276
+        ]
+      },
+      "id": "node/8257336106"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9068669816",
+        "name": "Whitehead Lane",
+        "public_transport": "station",
+        "railway": "station",
+        "usage": "tourism"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.4435015,
+          53.4945115
+        ]
+      },
+      "id": "node/9068669816"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9068690946",
+        "name": "Trencherbone Platform",
+        "public_transport": "station",
+        "railway": "station",
+        "usage": "tourism"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.4458362,
+          53.4954145
+        ]
+      },
+      "id": "node/9068690946"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9777001562",
+        "name": "Ince",
+        "naptan:AtcoCode": "9100INCE",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/inc/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/ince-manchester",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "INC",
+        "source": "npe",
+        "wikidata": "Q3342847",
+        "wikipedia": "en:Ince railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.6127432,
+          53.539096
+        ]
+      },
+      "id": "node/9777001562"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9777001563",
+        "name": "Hindley",
+        "naptan:AtcoCode": "9100HINDLEY",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/hin/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/hindley",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "HIN",
+        "source": "npe",
+        "train": "yes",
+        "wikidata": "Q2147566",
+        "wikipedia": "en:Hindley railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.574565,
+          53.5424521
+        ]
+      },
+      "id": "node/9777001563"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9777750797",
+        "addr:postcode": "M30 0GX",
+        "addr:street": "Green Lane",
+        "name": "Patricroft",
+        "naptan:AtcoCode": "9100PTRCRFT",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/pat/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/patricroft",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "PAT",
+        "ref:tiploc": "PTRCRFT",
+        "source": "npe",
+        "wheelchair": "no",
+        "wikidata": "Q2317165",
+        "wikipedia": "en:Patricroft railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.3573446,
+          53.4848233
+        ]
+      },
+      "id": "node/9777750797"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9794768857",
+        "name": "Heald Green",
+        "naptan:AtcoCode": "9100HLDG",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/hdg/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/heald-green",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "HDG",
+        "wikidata": "Q2194508",
+        "wikipedia": "en:Heald Green railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.2366797,
+          53.3694132
+        ]
+      },
+      "id": "node/9794768857"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9794768858",
+        "name": "Mauldeth Road",
+        "naptan:AtcoCode": "9100MLDTHRD",
+        "network": "National Rail",
+        "network:website": "https://www.nationalrail.co.uk/stations/mau/",
+        "network:wikidata": "Q26334",
+        "operator": "Northern Trains",
+        "operator:website": "https://www.northernrailway.co.uk/stations/mauldeth-road",
+        "operator:wikidata": "Q85789775",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:crs": "MAU",
+        "wikidata": "Q5133815",
+        "wikipedia": "en:Mauldeth Road railway station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.208947,
+          53.4336613
+        ]
+      },
+      "id": "node/9794768858"
+    }
+  ]
+}
