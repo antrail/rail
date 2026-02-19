@@ -2,54 +2,466 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Greater Manchester Stations</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Greater Manchester Rail Dashboard</title>
+
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
   <style>
-    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
-    #map { height: 100vh; }
+    :root{
+      --bg: #0b0f14;
+      --panel: #0f1722;
+      --panel2:#101a28;
+      --border: rgba(255,255,255,.10);
+      --text: #e6edf3;
+      --muted:#94a3b8;
+      --accent:#38bdf8;
+      --accent2:#93c5fd;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 14px;
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    }
+
+    /* App layout */
+    .app{
+      height:100vh;
+      display:grid;
+      grid-template-rows: 64px 1fr;
+    }
+
+    header{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      padding: 10px 14px;
+      border-bottom:1px solid var(--border);
+      background: linear-gradient(180deg, rgba(16,26,40,.95), rgba(11,15,20,.95));
+      backdrop-filter: blur(6px);
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width: 320px;
+    }
+    .logo{
+      width:44px;
+      height:44px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.06);
+      border:1px solid var(--border);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+    }
+    .logo img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      padding:6px;
+    }
+    .brand-title{
+      display:flex;
+      flex-direction:column;
+      line-height:1.1;
+    }
+    .brand-title .h1{
+      font-weight:650;
+      letter-spacing:.2px;
+      font-size:16px;
+    }
+    .brand-title .sub{
+      color:var(--muted);
+      font-size:12px;
+      margin-top:3px;
+    }
+
+    .header-right{
+      margin-left:auto;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .pill{
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      border-radius:999px;
+      padding:8px 10px;
+      font-size:12px;
+      color:var(--muted);
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .dot{
+      width:8px;height:8px;border-radius:999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34,197,94,.12);
+    }
+
+    main{
+      display:grid;
+      grid-template-columns: 380px 1fr;
+      min-height:0;
+    }
+
+    /* Sidebar */
+    .sidebar{
+      border-right:1px solid var(--border);
+      background: radial-gradient(1200px 500px at 0% 0%, rgba(56,189,248,.10), transparent 40%),
+                  linear-gradient(180deg, rgba(16,26,40,.8), rgba(11,15,20,.9));
+      padding: 12px;
+      overflow:auto;
+    }
+
+    .card{
+      background: rgba(255,255,255,.04);
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 12px;
+    }
+
+    .kpis{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+      margin-bottom:10px;
+    }
+    .kpi .label{ color:var(--muted); font-size:12px; }
+    .kpi .value{ font-size:22px; font-weight:700; margin-top:2px; }
+
+    .search{
+      margin: 10px 0;
+      display:flex;
+      gap:8px;
+    }
+    input[type="search"]{
+      width:100%;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border:1px solid var(--border);
+      background: rgba(0,0,0,.25);
+      color: var(--text);
+      outline:none;
+    }
+    input[type="search"]::placeholder{ color: rgba(148,163,184,.8); }
+
+    .btn{
+      padding: 10px 12px;
+      border-radius: 12px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      cursor:pointer;
+      font-weight:600;
+    }
+    .btn:hover{ background: rgba(255,255,255,.10); }
+
+    .section-title{
+      margin: 10px 0 8px;
+      font-weight:700;
+      font-size:13px;
+      color: var(--text);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .section-title .count{
+      color:var(--muted);
+      font-weight:600;
+      font-size:12px;
+    }
+
+    .list{
+      margin-top:8px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+    .row{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      padding:10px 10px;
+      border-radius: 12px;
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(0,0,0,.18);
+      cursor:pointer;
+    }
+    .row:hover{
+      border-color: rgba(56,189,248,.35);
+      background: rgba(56,189,248,.08);
+    }
+    .row .name{ font-weight:650; font-size:13px; }
+    .row .meta{ color:var(--muted); font-size:12px; display:flex; gap:10px; align-items:center; }
+
+    /* Map panel */
+    #map{
+      height:100%;
+      width:100%;
+    }
+
+    /* Leaflet dark popup */
+    .leaflet-popup-content-wrapper,
+    .leaflet-popup-tip {
+      background: #101826;
+      color: #e6edf3;
+      border: 1px solid rgba(255,255,255,0.10);
+    }
+    .leaflet-popup-content a { color: #7dd3fc; text-decoration:none; }
+    .leaflet-popup-content a:hover { text-decoration:underline; }
+    .leaflet-control-attribution{
+      background: rgba(16,24,38,0.85) !important;
+      color:#cbd5e1 !important;
+    }
+    .leaflet-control-attribution a{ color:#93c5fd !important; }
   </style>
 </head>
+
 <body>
-  <div id="map"></div>
+  <div class="app">
+    <header>
+      <div class="brand">
+        <div class="logo" title="Add your Bee Network Rail logo file to /assets and update the src below">
+          <!-- Put an official logo file here, e.g. assets/bee-network-rail.svg -->
+          <img src="./assets/bee-network-rail.svg" alt="Bee Network Rail">
+        </div>
+        <div class="brand-title">
+          <div class="h1">Greater Manchester Rail</div>
+          <div class="sub">Stations map • National Rail links</div>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <div class="pill"><span class="dot"></span> Static map • Live links</div>
+        <div class="pill" id="buildStamp">Build: —</div>
+      </div>
+    </header>
+
+    <main>
+      <aside class="sidebar">
+        <div class="kpis">
+          <div class="card kpi">
+            <div class="label">Stations loaded</div>
+            <div class="value" id="kpiStations">0</div>
+          </div>
+          <div class="card kpi">
+            <div class="label">Showing</div>
+            <div class="value" id="kpiShowing">0</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="section-title">
+            <span>Find a station</span>
+            <span class="count" id="resultCount">—</span>
+          </div>
+
+          <div class="search">
+            <input id="q" type="search" placeholder="Search station name…" autocomplete="off">
+            <button class="btn" id="clearBtn" title="Clear">Clear</button>
+          </div>
+
+          <div class="section-title">
+            <span>Stations</span>
+            <span class="count" id="listCount">—</span>
+          </div>
+
+          <div class="list" id="list"></div>
+        </div>
+
+        <div style="height:12px"></div>
+
+        <div class="card">
+          <div class="section-title"><span>Selected</span></div>
+          <div id="selected" style="color:var(--muted); font-size:12px;">Click a marker or a station in the list.</div>
+        </div>
+      </aside>
+
+      <div id="map"></div>
+    </main>
+  </div>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script>
-    const map = L.map("map").setView([53.48, -2.24], 10);
 
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  <script>
+    // Header stamp
+    document.getElementById("buildStamp").textContent =
+      "Build: " + new Date().toISOString().slice(0,10);
+
+    // Map
+    const map = L.map("map", { zoomControl: true }).setView([53.48, -2.24], 10);
+
+    // Dark basemap (no key)
+    L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+      subdomains: "abcd",
       maxZoom: 19,
-      attribution: "&copy; OpenStreetMap contributors"
+      attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
     }).addTo(map);
 
-    async function loadStations() {
-      const res = await fetch("./data/stations.geojson");
-      const gj = await res.json();
+    let allFeatures = [];
+    let markerLayer = null;
+    const markerById = new Map(); // id -> leaflet layer
 
-      const layer = L.geoJSON(gj, {
-        pointToLayer: (f, latlng) => L.circleMarker(latlng, { radius: 6, weight: 1, fillOpacity: 0.9 }),
+    function featureId(f, idx){
+      // Use OSM id if present, otherwise stable fallback
+      return (f.id || f.properties?.["@id"] || f.properties?.id || ("idx:" + idx));
+    }
+
+    function nrLink(name, crs){
+      const query = (crs || name);
+      const url = new URL("https://www.nationalrail.co.uk/stations/");
+      url.searchParams.set("text", query);
+      return url.toString();
+    }
+
+    function popupHtml(name, crs){
+      const href = nrLink(name, crs);
+      return `
+        <div style="min-width:240px">
+          <div style="font-weight:700; font-size:14px;">${name}</div>
+          ${crs ? `<div style="color:#94a3b8; margin-top:2px;">CRS: ${crs}</div>` : ""}
+          <div style="margin-top:10px">
+            <a href="${href}" target="_blank" rel="noopener">Open National Rail Enquiries</a>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderMarkers(features){
+      if (markerLayer) markerLayer.remove();
+
+      markerLayer = L.geoJSON({ type:"FeatureCollection", features }, {
+        pointToLayer: (f, latlng) => L.circleMarker(latlng, {
+          radius: 6,
+          weight: 2,
+          color: "#93c5fd",
+          fillColor: "#38bdf8",
+          fillOpacity: 0.9
+        }),
         onEachFeature: (f, l) => {
           const name = f.properties?.name ?? "Station";
           const crs  = (f.properties?.crs ?? "").toUpperCase();
+          l.bindPopup(popupHtml(name, crs));
 
-          // Robust outbound link via official station search:
-          const query = crs || name;
-          const href = `https://www.nationalrail.co.uk/stations/?text=${encodeURIComponent(query)}`;
-
-          l.bindPopup(`
-            <div style="min-width:220px">
-              <div style="font-weight:600">${name}</div>
-              ${crs ? `<div style="color:#666">CRS: ${crs}</div>` : `<div style="color:#666">CRS: (unknown)</div>`}
-              <div style="margin-top:8px">
-                <a href="${href}" target="_blank" rel="noopener">Open National Rail Enquiries</a>
-              </div>
-            </div>
-          `);
+          l.on("click", () => {
+            document.getElementById("selected").textContent = crs ? `${name} (${crs})` : name;
+          });
         }
       }).addTo(map);
 
-      map.fitBounds(layer.getBounds(), { padding: [20,20] });
+      // rebuild id map for list interaction
+      markerById.clear();
+      let idx = 0;
+      markerLayer.eachLayer(layer => {
+        const f = layer.feature;
+        const id = featureId(f, idx++);
+        markerById.set(id, layer);
+      });
+
+      return markerLayer;
     }
+
+    function renderList(features){
+      const list = document.getElementById("list");
+      list.innerHTML = "";
+
+      // Sort by station name
+      const sorted = [...features].sort((a,b) => {
+        const an = (a.properties?.name || "").toLowerCase();
+        const bn = (b.properties?.name || "").toLowerCase();
+        return an.localeCompare(bn);
+      });
+
+      sorted.forEach((f, idx) => {
+        const id = featureId(f, idx);
+        const name = f.properties?.name ?? "Station";
+        const crs  = (f.properties?.crs ?? "").toUpperCase();
+        const href = nrLink(name, crs);
+
+        const el = document.createElement("div");
+        el.className = "row";
+        el.innerHTML = `
+          <div class="name">${name}</div>
+          <div class="meta">
+            <span>${crs ? "CRS: " + crs : "CRS: —"}</span>
+            <span>•</span>
+            <a href="${href}" target="_blank" rel="noopener" style="color:var(--accent);">National Rail</a>
+          </div>
+        `;
+
+        el.addEventListener("click", () => {
+          // Zoom to and open popup
+          const layer = markerById.get(id);
+          if (!layer) return;
+
+          const ll = layer.getLatLng();
+          map.setView(ll, Math.max(map.getZoom(), 13), { animate: true });
+          layer.openPopup();
+
+          document.getElementById("selected").textContent = crs ? `${name} (${crs})` : name;
+        });
+
+        list.appendChild(el);
+      });
+
+      document.getElementById("listCount").textContent = `${sorted.length} listed`;
+    }
+
+    function applyFilter(){
+      const q = document.getElementById("q").value.trim().toLowerCase();
+      const filtered = !q ? allFeatures : allFeatures.filter(f => {
+        const name = (f.properties?.name || "").toLowerCase();
+        return name.includes(q);
+      });
+
+      document.getElementById("kpiShowing").textContent = String(filtered.length);
+      document.getElementById("resultCount").textContent = q ? `Matches: ${filtered.length}` : `All: ${filtered.length}`;
+
+      renderMarkers(filtered);
+      renderList(filtered);
+
+      // If the filter is empty, fit bounds to all stations; otherwise leave zoom alone
+      if (!q && markerLayer && markerLayer.getBounds().isValid()){
+        map.fitBounds(markerLayer.getBounds(), { padding: [20,20] });
+      }
+    }
+
+    async function loadStations(){
+      const res = await fetch("./data/stations.geojson");
+      if (!res.ok) throw new Error(`Failed to load stations.geojson (${res.status})`);
+      const gj = await res.json();
+
+      allFeatures = (gj.features || []).filter(f => f.geometry && f.geometry.type === "Point");
+      document.getElementById("kpiStations").textContent = String(allFeatures.length);
+
+      // initial render
+      renderMarkers(allFeatures);
+      renderList(allFeatures);
+      document.getElementById("kpiShowing").textContent = String(allFeatures.length);
+      document.getElementById("resultCount").textContent = `All: ${allFeatures.length}`;
+
+      if (markerLayer && markerLayer.getBounds().isValid()){
+        map.fitBounds(markerLayer.getBounds(), { padding: [20,20] });
+      }
+    }
+
+    // Events
+    document.getElementById("q").addEventListener("input", applyFilter);
+    document.getElementById("clearBtn").addEventListener("click", () => {
+      document.getElementById("q").value = "";
+      applyFilter();
+    });
 
     loadStations().catch(err => alert(err.message));
   </script>
