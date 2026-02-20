@@ -173,6 +173,26 @@
     .pop-h{ color:#94a3b8; font-weight:700; margin-top:10px; }
     .pop-p{ margin-top:4px; color:#cbd5e1; font-size:12px; line-height:1.35; }
     .pop-links{ margin-top:12px; display:flex; gap:12px; flex-wrap:wrap; }
+
+    /* Permanent station labels for pinned/termini */
+    .station-label{
+      background: rgba(15, 23, 34, 0.92);
+      color: #e6edf3;
+      border: 1px solid rgba(255,255,255,0.16);
+      padding: 4px 8px;
+      border-radius: 999px;
+      box-shadow: 0 10px 22px rgba(0,0,0,0.35);
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: .2px;
+      white-space: nowrap;
+    }
+    .station-label.terminus{
+      border-color: rgba(245,158,11,0.55);
+    }
+    .station-label.pinned{
+      border-color: rgba(56,189,248,0.55);
+    }
   </style>
 </head>
 
@@ -185,7 +205,7 @@
         </div>
         <div class="brand-title">
           <div class="h1">Greater Manchester Rail</div>
-          <div class="sub">Stations map • NRE + Realtime Trains • Wikipedia summaries</div>
+          <div class="sub">Pinned hubs + GM termini • NRE + Realtime Trains • Wikipedia summaries</div>
         </div>
       </div>
 
@@ -235,6 +255,9 @@
           <div style="color:var(--muted); font-size:12px; margin-top:8px;">
             Tip: Wikipedia summaries load when you open a popup (cached afterwards).
           </div>
+          <div style="color:var(--muted); font-size:12px; margin-top:8px;">
+            GM termini pinned by default: <b>Manchester Airport (MIA)</b>, <b>Rose Hill Marple (RHM)</b>.
+          </div>
         </div>
       </aside>
 
@@ -245,12 +268,30 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
   <script>
+    /**********************
+     * PINNED + TERMINI
+     **********************/
+    // Key hubs you requested (by CRS)
+    const PINNED_HUBS_CRS = new Set([
+      "MAN", // Manchester Piccadilly
+      "MCO", // Manchester Oxford Road
+      "MCV", // Manchester Victoria
+      "BOL", // Bolton
+      "MIA"  // Manchester Airport
+    ]);
+
+    // Terminus stations within Greater Manchester (by CRS)
+    // If you want more, just add the CRS here.
+    const GM_TERMINI_CRS = new Set([
+      "MIA", // Manchester Airport
+      "RHM"  // Rose Hill Marple
+    ]);
+
     document.getElementById("buildStamp").textContent =
       "Build: " + new Date().toISOString().slice(0,10);
 
     const map = L.map("map", { zoomControl: true }).setView([53.48, -2.24], 10);
 
-    // Dark basemap
     L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
       subdomains: "abcd",
       maxZoom: 19,
@@ -266,12 +307,10 @@
     }
 
     function getCrs(props){
-      // CRS fix: supports both "crs" and OSM-style "ref:crs"
       return String(props?.crs ?? props?.["ref:crs"] ?? "").toUpperCase();
     }
 
     function getWikidataQid(props){
-      // Common tags: wikidata / network:wikidata
       const q = String(props?.wikidata ?? props?.["network:wikidata"] ?? "").trim();
       return /^Q\d+$/i.test(q) ? q.toUpperCase() : "";
     }
@@ -307,10 +346,8 @@
 
     /***********************
      * Wikipedia summary cache
-     * - loads on popup open
-     * - cached in memory + localStorage
      ***********************/
-    const wikiMemCache = new Map(); // qid -> { ts, title, extract, url }
+    const wikiMemCache = new Map();
     const WIKI_TTL_MS = 1000 * 60 * 60 * 24 * 30; // 30 days
 
     function loadStoredWiki(qid){
@@ -321,21 +358,14 @@
         if (!obj || !obj.ts) return null;
         if (Date.now() - obj.ts > WIKI_TTL_MS) return null;
         return obj;
-      } catch {
-        return null;
-      }
+      } catch { return null; }
     }
 
     function storeWiki(qid, obj){
-      try{
-        localStorage.setItem("wikiSummary:" + qid, JSON.stringify(obj));
-      } catch {
-        // ignore quota errors
-      }
+      try{ localStorage.setItem("wikiSummary:" + qid, JSON.stringify(obj)); } catch {}
     }
 
     async function fetchWikipediaSummaryFromWikidata(qid){
-      // 1) Get the enwiki title (sitelink) from Wikidata entity JSON
       const wdUrl = `https://www.wikidata.org/wiki/Special:EntityData/${encodeURIComponent(qid)}.json`;
       const wdRes = await fetch(wdUrl, { headers: { "Accept": "application/json" } });
       if (!wdRes.ok) throw new Error("Wikidata fetch failed");
@@ -344,12 +374,8 @@
       const ent = wd?.entities?.[qid];
       const enwikiTitle = ent?.sitelinks?.enwiki?.title;
 
-      if (!enwikiTitle) {
-        // fall back: no enwiki sitelink
-        return { title: "", extract: "", url: "" };
-      }
+      if (!enwikiTitle) return { title: "", extract: "", url: "" };
 
-      // 2) Fetch Wikipedia REST summary
       const wpUrl = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(enwikiTitle)}`;
       const wpRes = await fetch(wpUrl, { headers: { "Accept": "application/json" } });
       if (!wpRes.ok) throw new Error("Wikipedia summary fetch failed");
@@ -371,14 +397,10 @@
       }
 
       const stored = loadStoredWiki(qid);
-      if (stored) {
-        wikiMemCache.set(qid, stored);
-        return stored;
-      }
+      if (stored) { wikiMemCache.set(qid, stored); return stored; }
 
       const { title, extract, url } = await fetchWikipediaSummaryFromWikidata(qid);
       const obj = { ts: Date.now(), title, extract, url };
-
       wikiMemCache.set(qid, obj);
       storeWiki(qid, obj);
       return obj;
@@ -390,13 +412,51 @@
       return t.length > n ? (t.slice(0, n) + "…") : t;
     }
 
+    function stationLabelText(name){
+      // Keep Manchester names readable but short-ish
+      return String(name || "")
+        .replace(/^Manchester\s+/i, "Manchester ")
+        .trim();
+    }
+
+    function markerStyleFor(f){
+      const crs = getCrs(f.properties);
+      const isTerminus = GM_TERMINI_CRS.has(crs);
+      const isPinned = PINNED_HUBS_CRS.has(crs);
+
+      if (isTerminus) {
+        return { radius: 8, weight: 3, color: "#fbbf24", fillColor: "#f59e0b", fillOpacity: 0.95 };
+      }
+      if (isPinned) {
+        return { radius: 8, weight: 3, color: "#7dd3fc", fillColor: "#38bdf8", fillOpacity: 0.95 };
+      }
+      return { radius: 6, weight: 2, color: "#93c5fd", fillColor: "#38bdf8", fillOpacity: 0.9 };
+    }
+
+    function maybeBindPermanentLabel(layer, f){
+      const crs = getCrs(f.properties);
+      const name = f.properties?.name ?? "Station";
+      const isTerminus = GM_TERMINI_CRS.has(crs);
+      const isPinned = PINNED_HUBS_CRS.has(crs);
+
+      if (!isPinned && !isTerminus) return;
+
+      const cls = isTerminus ? "station-label terminus" : "station-label pinned";
+      layer.bindTooltip(stationLabelText(name), {
+        permanent: true,
+        direction: "right",
+        offset: [10, 0],
+        opacity: 1,
+        className: cls
+      });
+    }
+
     function popupHtml(name, crs, props, stationKey){
       const desc = routesDescription(props);
       const qid = getWikidataQid(props);
       const nre = nreLink(props);
       const rtt = rttLink(props);
 
-      // If no OSM description, we show a placeholder that will be replaced on popupopen
       const aboutBlock = desc
         ? `
           <div class="pop-h">Routes served</div>
@@ -425,7 +485,6 @@
     }
 
     async function hydratePopupWithWiki(layer){
-      // Called when popup opens; finds the placeholder and swaps it for the cached/loaded summary
       const popup = layer.getPopup();
       const el = popup?.getElement();
       if (!el) return;
@@ -441,10 +500,7 @@
         if (!summary) return;
 
         const extract = truncate(summary.extract, 260);
-        if (!extract) {
-          span.textContent = "No Wikipedia summary available.";
-          return;
-        }
+        if (!extract) { span.textContent = "No Wikipedia summary available."; return; }
 
         const link = summary.url ? ` <a href="${summary.url}" target="_blank" rel="noopener">(Wikipedia)</a>` : "";
         span.innerHTML = `${escapeHtml(extract)}${link}`;
@@ -457,14 +513,11 @@
       if (markerLayer) markerLayer.remove();
 
       markerLayer = L.geoJSON({ type:"FeatureCollection", features }, {
-        pointToLayer: (f, latlng) =>
-          L.circleMarker(latlng, {
-            radius: 6,
-            weight: 2,
-            color: "#93c5fd",
-            fillColor: "#38bdf8",
-            fillOpacity: 0.9
-          }),
+        pointToLayer: (f, latlng) => {
+          const m = L.circleMarker(latlng, markerStyleFor(f));
+          maybeBindPermanentLabel(m, f);
+          return m;
+        },
 
         onEachFeature: (f, l) => {
           const name = f.properties?.name ?? "Station";
@@ -512,7 +565,6 @@
         const nre = nreLink(f.properties);
         const rtt = rttLink(f.properties);
 
-        // For the list, show OSM description if present; otherwise nothing (to avoid hammering)
         const desc = routesDescription(f.properties);
 
         const el = document.createElement("div");
@@ -521,6 +573,8 @@
           <div class="name">${escapeHtml(name)}</div>
           <div class="meta">
             <span>${crs ? "CRS: " + escapeHtml(crs) : "CRS: —"}</span>
+            ${PINNED_HUBS_CRS.has(crs) ? `<span>•</span><span style="color:#7dd3fc;font-weight:700;">Pinned hub</span>` : ``}
+            ${GM_TERMINI_CRS.has(crs) ? `<span>•</span><span style="color:#fbbf24;font-weight:700;">GM terminus</span>` : ``}
             <span>•</span>
             <a href="${nre}" target="_blank" rel="noopener">NRE</a>
             <span>•</span>
