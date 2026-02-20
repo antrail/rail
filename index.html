@@ -93,7 +93,7 @@
     .kpi .value{ font-size:22px; font-weight:700; margin-top:2px; }
 
     .search{ margin: 10px 0; display:flex; gap:8px; }
-    input[type="search"]{
+    input[type="search"], select{
       width:100%;
       padding: 10px 12px;
       border-radius: 12px;
@@ -112,6 +112,7 @@
       color: var(--text);
       cursor:pointer;
       font-weight:600;
+      white-space:nowrap;
     }
     .btn:hover{ background: rgba(255,255,255,.10); }
 
@@ -187,12 +188,24 @@
       letter-spacing: .2px;
       white-space: nowrap;
     }
-    .station-label.terminus{
-      border-color: rgba(245,158,11,0.55);
+    .station-label.terminus{ border-color: rgba(245,158,11,0.55); }
+    .station-label.pinned{ border-color: rgba(56,189,248,0.55); }
+
+    /* Tools card */
+    .tools-row{ display:flex; gap:8px; align-items:center; margin-top:10px; }
+    .tool-links{ display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
+    .tool-links a{
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 10px;
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 999px;
+      background: rgba(255,255,255,.05);
     }
-    .station-label.pinned{
-      border-color: rgba(56,189,248,0.55);
-    }
+    .tool-links a:hover{ background: rgba(255,255,255,.10); }
+    .muted{ color: var(--muted); font-size: 12px; }
   </style>
 </head>
 
@@ -205,7 +218,7 @@
         </div>
         <div class="brand-title">
           <div class="h1">Greater Manchester Rail</div>
-          <div class="sub">Pinned hubs + GM termini • NRE + Realtime Trains • Wikipedia summaries</div>
+          <div class="sub">Pinned hubs + GM termini • Tools • Wikipedia summaries</div>
         </div>
       </div>
 
@@ -217,6 +230,37 @@
 
     <main>
       <aside class="sidebar">
+
+        <!-- Tools menu -->
+        <div class="card">
+          <div class="section-title" style="margin-top:0;">
+            <span>Tools</span>
+            <span class="count">Resources</span>
+          </div>
+
+          <div class="muted">
+            Quick links to operational resources. Use the dropdown to open in a new tab.
+          </div>
+
+          <div class="tools-row">
+            <select id="toolSelect" aria-label="Tools menu">
+              <option value="">Choose a tool…</option>
+              <option value="ccil">CCIL log</option>
+              <option value="rtt">Realtime Trains</option>
+              <option value="nre">National Rail Enquiries</option>
+            </select>
+            <button class="btn" id="openToolBtn" type="button">Open</button>
+          </div>
+
+          <div class="tool-links">
+            <a href="https://ccil.clyx.net/CCIL/NewApplication/Default.aspx" target="_blank" rel="noopener">CCIL log</a>
+            <a href="https://www.realtimetrains.co.uk/" target="_blank" rel="noopener">Realtime Trains</a>
+            <a href="https://www.nationalrail.co.uk/" target="_blank" rel="noopener">National Rail Enquiries</a>
+          </div>
+        </div>
+
+        <div style="height:12px"></div>
+
         <div class="kpis">
           <div class="card kpi">
             <div class="label">Stations loaded</div>
@@ -236,7 +280,7 @@
 
           <div class="search">
             <input id="q" type="search" placeholder="Search station name…" autocomplete="off">
-            <button class="btn" id="clearBtn" title="Clear">Clear</button>
+            <button class="btn" id="clearBtn" title="Clear" type="button">Clear</button>
           </div>
 
           <div class="section-title">
@@ -251,14 +295,12 @@
 
         <div class="card">
           <div class="section-title"><span>Selected</span></div>
-          <div id="selected" style="color:var(--muted); font-size:12px;">Click a marker or a station in the list.</div>
-          <div style="color:var(--muted); font-size:12px; margin-top:8px;">
-            Tip: Wikipedia summaries load when you open a popup (cached afterwards).
-          </div>
-          <div style="color:var(--muted); font-size:12px; margin-top:8px;">
+          <div id="selected" class="muted">Click a marker or a station in the list.</div>
+          <div class="muted" style="margin-top:8px;">
             GM termini pinned by default: <b>Manchester Airport (MIA)</b>, <b>Rose Hill Marple (RHM)</b>.
           </div>
         </div>
+
       </aside>
 
       <div id="map"></div>
@@ -271,7 +313,6 @@
     /**********************
      * PINNED + TERMINI
      **********************/
-    // Key hubs you requested (by CRS)
     const PINNED_HUBS_CRS = new Set([
       "MAN", // Manchester Piccadilly
       "MCO", // Manchester Oxford Road
@@ -280,8 +321,6 @@
       "MIA"  // Manchester Airport
     ]);
 
-    // Terminus stations within Greater Manchester (by CRS)
-    // If you want more, just add the CRS here.
     const GM_TERMINI_CRS = new Set([
       "MIA", // Manchester Airport
       "RHM"  // Rose Hill Marple
@@ -290,6 +329,20 @@
     document.getElementById("buildStamp").textContent =
       "Build: " + new Date().toISOString().slice(0,10);
 
+    // Tools menu behaviour
+    const TOOL_URLS = {
+      ccil: "https://ccil.clyx.net/CCIL/NewApplication/Default.aspx",
+      rtt:  "https://www.realtimetrains.co.uk/",
+      nre:  "https://www.nationalrail.co.uk/"
+    };
+
+    document.getElementById("openToolBtn").addEventListener("click", () => {
+      const key = document.getElementById("toolSelect").value;
+      const url = TOOL_URLS[key];
+      if (url) window.open(url, "_blank", "noopener");
+    });
+
+    // Map
     const map = L.map("map", { zoomControl: true }).setView([53.48, -2.24], 10);
 
     L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
@@ -330,14 +383,12 @@
       return d.length > 240 ? (d.slice(0, 240) + "…") : d;
     }
 
-    // National Rail Enquiries station page (deep link if present in OSM export)
     function nreLink(props){
       const direct = props?.["network:website"];
       if (direct && /^https:\/\/www\.nationalrail\.co\.uk\/stations\//i.test(direct)) return direct;
       return "https://www.nationalrail.co.uk/stations/";
     }
 
-    // RealtimeTrains link (external)
     function rttLink(props){
       const crs = getCrs(props);
       if (crs) return `https://www.realtimetrains.co.uk/search/detailed/${encodeURIComponent(crs)}`;
@@ -348,7 +399,7 @@
      * Wikipedia summary cache
      ***********************/
     const wikiMemCache = new Map();
-    const WIKI_TTL_MS = 1000 * 60 * 60 * 24 * 30; // 30 days
+    const WIKI_TTL_MS = 1000 * 60 * 60 * 24 * 30;
 
     function loadStoredWiki(qid){
       try{
@@ -360,7 +411,6 @@
         return obj;
       } catch { return null; }
     }
-
     function storeWiki(qid, obj){
       try{ localStorage.setItem("wikiSummary:" + qid, JSON.stringify(obj)); } catch {}
     }
@@ -373,7 +423,6 @@
 
       const ent = wd?.entities?.[qid];
       const enwikiTitle = ent?.sitelinks?.enwiki?.title;
-
       if (!enwikiTitle) return { title: "", extract: "", url: "" };
 
       const wpUrl = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(enwikiTitle)}`;
@@ -381,11 +430,11 @@
       if (!wpRes.ok) throw new Error("Wikipedia summary fetch failed");
       const wp = await wpRes.json();
 
-      const extract = String(wp?.extract ?? "").trim();
-      const title = String(wp?.title ?? enwikiTitle);
-      const url = String(wp?.content_urls?.desktop?.page ?? "");
-
-      return { title, extract, url };
+      return {
+        title: String(wp?.title ?? enwikiTitle),
+        extract: String(wp?.extract ?? "").trim(),
+        url: String(wp?.content_urls?.desktop?.page ?? "")
+      };
     }
 
     async function getWikiSummary(qid){
@@ -413,10 +462,7 @@
     }
 
     function stationLabelText(name){
-      // Keep Manchester names readable but short-ish
-      return String(name || "")
-        .replace(/^Manchester\s+/i, "Manchester ")
-        .trim();
+      return String(name || "").replace(/^Manchester\s+/i, "Manchester ").trim();
     }
 
     function markerStyleFor(f){
@@ -424,12 +470,8 @@
       const isTerminus = GM_TERMINI_CRS.has(crs);
       const isPinned = PINNED_HUBS_CRS.has(crs);
 
-      if (isTerminus) {
-        return { radius: 8, weight: 3, color: "#fbbf24", fillColor: "#f59e0b", fillOpacity: 0.95 };
-      }
-      if (isPinned) {
-        return { radius: 8, weight: 3, color: "#7dd3fc", fillColor: "#38bdf8", fillOpacity: 0.95 };
-      }
+      if (isTerminus) return { radius: 8, weight: 3, color: "#fbbf24", fillColor: "#f59e0b", fillOpacity: 0.95 };
+      if (isPinned)   return { radius: 8, weight: 3, color: "#7dd3fc", fillColor: "#38bdf8", fillOpacity: 0.95 };
       return { radius: 6, weight: 2, color: "#93c5fd", fillColor: "#38bdf8", fillOpacity: 0.9 };
     }
 
