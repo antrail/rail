@@ -10,13 +10,10 @@
   <style>
     :root{
       --bg: #0b0f14;
-      --panel: #0f1722;
-      --panel2:#101a28;
       --border: rgba(255,255,255,.10);
       --text: #e6edf3;
       --muted:#94a3b8;
       --accent:#38bdf8;
-      --accent2:#93c5fd;
       --shadow: 0 10px 30px rgba(0,0,0,.35);
       --radius: 14px;
     }
@@ -109,7 +106,7 @@
 
     main{
       display:grid;
-      grid-template-columns: 380px 1fr;
+      grid-template-columns: 420px 1fr;
       min-height:0;
     }
 
@@ -189,7 +186,7 @@
     .row{
       display:flex;
       flex-direction:column;
-      gap:4px;
+      gap:6px;
       padding:10px 10px;
       border-radius: 12px;
       border:1px solid rgba(255,255,255,.08);
@@ -201,9 +198,10 @@
       background: rgba(56,189,248,.08);
     }
     .row .name{ font-weight:650; font-size:13px; }
-    .row .meta{ color:var(--muted); font-size:12px; display:flex; gap:10px; align-items:center; }
+    .row .meta{ color:var(--muted); font-size:12px; display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
     .row .meta a{ color: var(--accent); text-decoration: none; }
     .row .meta a:hover{ text-decoration: underline; }
+    .row .desc{ color:var(--muted); font-size:12px; line-height:1.35; }
 
     #map{
       height:100%;
@@ -231,17 +229,16 @@
     <header>
       <div class="brand">
         <div class="logo" title="Add your logo file to /assets and update the src below">
-          <!-- Put an official logo file here, e.g. assets/bee-network-rail.svg -->
           <img src="./assets/bee-network-rail.svg" alt="Bee Network Rail">
         </div>
         <div class="brand-title">
           <div class="h1">Greater Manchester Rail</div>
-          <div class="sub">Stations map • National Rail links</div>
+          <div class="sub">Stations map • routes • NRE + Realtime Trains links</div>
         </div>
       </div>
 
       <div class="header-right">
-        <div class="pill"><span class="dot"></span> Static map • Live links</div>
+        <div class="pill"><span class="dot"></span> Static map</div>
         <div class="pill" id="buildStamp">Build: —</div>
       </div>
     </header>
@@ -296,10 +293,9 @@
     document.getElementById("buildStamp").textContent =
       "Build: " + new Date().toISOString().slice(0,10);
 
-    // Map
     const map = L.map("map", { zoomControl: true }).setView([53.48, -2.24], 10);
 
-    // Dark basemap (no key)
+    // Dark basemap
     L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
       subdomains: "abcd",
       maxZoom: 19,
@@ -308,32 +304,64 @@
 
     let allFeatures = [];
     let markerLayer = null;
-    const markerById = new Map(); // id -> leaflet layer
+    const markerById = new Map();
 
     function featureId(f, idx){
       return (f.id || f.properties?.["@id"] || f.properties?.id || ("idx:" + idx));
     }
 
     function getCrs(props){
-      // ✅ CRS FIX: support both "crs" and OSM-style "ref:crs"
       return String(props?.crs ?? props?.["ref:crs"] ?? "").toUpperCase();
     }
 
-    function nrLink(name, crs){
-      const query = (crs || name);
-      const url = new URL("https://www.nationalrail.co.uk/stations/");
-      url.searchParams.set("text", query);
-      return url.toString();
+    function escapeHtml(s){
+      return String(s || "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
     }
 
-    function popupHtml(name, crs){
-      const href = nrLink(name, crs);
+    function routesDescription(props){
+      const d = String(props?.description ?? "").trim();
+      if (!d) return null;
+      return d.length > 240 ? (d.slice(0, 240) + "…") : d;
+    }
+
+    // National Rail Enquiries station page (deep link if present in OSM export)
+    function nreLink(props){
+      const direct = props?.["network:website"];
+      if (direct && /^https:\/\/www\.nationalrail\.co\.uk\/stations\//i.test(direct)) return direct;
+      return "https://www.nationalrail.co.uk/stations/";
+    }
+
+    // Realtime trains link (external)
+    function rttLink(props){
+      const crs = getCrs(props);
+      if (crs) return `https://www.realtimetrains.co.uk/search/detailed/${encodeURIComponent(crs)}`;
+      // Fallback: at least open the NRE station page
+      return nreLink(props);
+    }
+
+    function popupHtml(name, crs, props){
+      const desc = routesDescription(props);
+      const nre = nreLink(props);
+      const rtt = rttLink(props);
+
       return `
-        <div style="min-width:240px">
-          <div style="font-weight:700; font-size:14px;">${name}</div>
-          ${crs ? `<div style="color:#94a3b8; margin-top:2px;">CRS: ${crs}</div>` : `<div style="color:#94a3b8; margin-top:2px;">CRS: —</div>`}
-          <div style="margin-top:10px">
-            <a href="${href}" target="_blank" rel="noopener">Open National Rail Enquiries</a>
+        <div style="min-width:260px">
+          <div style="font-weight:700; font-size:14px;">${escapeHtml(name)}</div>
+          ${crs ? `<div style="color:#94a3b8; margin-top:2px;">CRS: ${escapeHtml(crs)}</div>` : ``}
+
+          <div style="margin-top:10px; color:#94a3b8; font-weight:700;">Routes served</div>
+          <div style="margin-top:4px; color:#cbd5e1; font-size:12px; line-height:1.35;">
+            ${desc ? escapeHtml(desc) : "No description available in OSM for this station."}
+          </div>
+
+          <div style="margin-top:12px; display:flex; gap:12px; flex-wrap:wrap;">
+            <a href="${nre}" target="_blank" rel="noopener">National Rail Enquiries</a>
+            <a href="${rtt}" target="_blank" rel="noopener">Realtime trains</a>
           </div>
         </div>
       `;
@@ -356,7 +384,7 @@
           const name = f.properties?.name ?? "Station";
           const crs  = getCrs(f.properties);
 
-          l.bindPopup(popupHtml(name, crs));
+          l.bindPopup(popupHtml(name, crs, f.properties));
 
           l.on("click", () => {
             document.getElementById("selected").textContent = crs ? `${name} (${crs})` : name;
@@ -364,7 +392,6 @@
         }
       }).addTo(map);
 
-      // rebuild id map for list interaction
       markerById.clear();
       let idx = 0;
       markerLayer.eachLayer(layer => {
@@ -390,17 +417,23 @@
         const id = featureId(f, idx);
         const name = f.properties?.name ?? "Station";
         const crs  = getCrs(f.properties);
-        const href = nrLink(name, crs);
+
+        const nre = nreLink(f.properties);
+        const rtt = rttLink(f.properties);
+        const desc = routesDescription(f.properties);
 
         const el = document.createElement("div");
         el.className = "row";
         el.innerHTML = `
-          <div class="name">${name}</div>
+          <div class="name">${escapeHtml(name)}</div>
           <div class="meta">
-            <span>${crs ? "CRS: " + crs : "CRS: —"}</span>
+            <span>${crs ? "CRS: " + escapeHtml(crs) : "CRS: —"}</span>
             <span>•</span>
-            <a href="${href}" target="_blank" rel="noopener">National Rail</a>
+            <a href="${nre}" target="_blank" rel="noopener">NRE</a>
+            <span>•</span>
+            <a href="${rtt}" target="_blank" rel="noopener">Realtime</a>
           </div>
+          ${desc ? `<div class="desc">${escapeHtml(desc)}</div>` : ``}
         `;
 
         el.addEventListener("click", () => {
