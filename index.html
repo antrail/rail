@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html>
 <head>
@@ -242,11 +243,11 @@
     <header>
       <div class="brand">
         <div class="logo" title="Add your logo file to /assets and update the src below">
-          <img src="./assets/bee-network-rail.svg" alt="Bee Network Rail">
+          <img src="./data/logo.png" alt="Bee Network Rail">
         </div>
         <div class="brand-title">
-          <div class="h1">Greater Manchester Rail</div>
-          <div class="sub">Pinned hubs + GM termini • Tools • Labels-on-zoom • Rail lines</div>
+          <div class="h1">Bee Network Rail</div>
+          <div class="sub">Maps of rail in Greater Manchester</div>
         </div>
       </div>
 
@@ -276,6 +277,7 @@
               <option value="ccil">CCIL log</option>
               <option value="rtt">Realtime Trains</option>
               <option value="nre">National Rail Enquiries</option>
+<option value="rpc">Rail Procedures</option>
             </select>
             <button class="btn" id="openToolBtn" type="button">Open</button>
           </div>
@@ -284,6 +286,7 @@
             <a href="https://ccil.clyx.net/CCIL/NewApplication/Default.aspx" target="_blank" rel="noopener">CCIL log</a>
             <a href="https://www.realtimetrains.co.uk/" target="_blank" rel="noopener">Realtime Trains</a>
             <a href="https://www.nationalrail.co.uk/" target="_blank" rel="noopener">National Rail Enquiries</a>
+ 	    <a href="https://tfgmserverteamoutlook.sharepoint.com/sites/TfGMControlTEST/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2FTfGMControlTEST%2FShared%20Documents%2FRail&p=true&ga=1" target="_blank" rel="noopener">Rail Procedures</a>
           </div>
 
           <!-- Labels toggle -->
@@ -364,7 +367,7 @@
      * PINNED + TERMINI
      **********************/
     const PINNED_HUBS_CRS = new Set(["MAN","MCO","MCV","BOL","MIA"]);
-    const GM_TERMINI_CRS  = new Set(["MIA","RHM"]);
+    const GM_TERMINI_CRS  = new Set(["MIA","RHM","HDF"]);
 
     const LABEL_ZOOM_THRESHOLD = 13;
     let showAllLabelsEnabled = false;
