@@ -1,18 +1,28 @@
-<!DOCTYPE html>
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Greater Manchester Rail Dashboard</title>
 
-<!-- saved from url=(0041)https://antrail.github.io/rail/index.html -->
-<html><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-<meta content="width=device-width,initial-scale=1" name="viewport"/>
-<title>Bee Network Rail Dashboard</title>
-<link href="./Bee Network Rail Dashboard_files/leaflet.css" rel="stylesheet"/>
-<style>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+  <style>
+    /* ===== Yellow/Black theme ===== */
     :root{
-      --bg: #0b0f14;
-      --border: rgba(255,255,255,.10);
-      --text: #e6edf3;
-      --muted:#94a3b8;
-      --accent:#38bdf8;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --bg: #070707;
+      --panel: rgba(255,255,255,.04);
+      --panel2: rgba(255,255,255,.06);
+      --border: rgba(255,255,255,.12);
+
+      --text: #f6f6f6;
+      --muted: rgba(246,246,246,.72);
+
+      --yellow: #ffd200;
+      --yellow2:#ffea70;
+
+      --accent: var(--yellow);
+      --shadow: 0 10px 30px rgba(0,0,0,.55);
       --radius: 14px;
     }
 
@@ -30,21 +40,21 @@
       display:flex; align-items:center; gap:14px;
       padding: 10px 14px;
       border-bottom:1px solid var(--border);
-      background: linear-gradient(180deg, rgba(16,26,40,.95), rgba(11,15,20,.95));
+      background: linear-gradient(180deg, rgba(0,0,0,.92), rgba(7,7,7,.92));
       backdrop-filter: blur(6px);
     }
 
     .brand{ display:flex; align-items:center; gap:12px; min-width: 320px; }
     .logo{
       width:44px; height:44px; border-radius: 12px;
-      background: rgba(255,255,255,.06);
-      border:1px solid var(--border);
+      background: rgba(255,210,0,.08);
+      border:1px solid rgba(255,210,0,.28);
       display:flex; align-items:center; justify-content:center;
       overflow:hidden;
     }
     .logo img{ width:100%; height:100%; object-fit:contain; padding:6px; }
     .brand-title{ display:flex; flex-direction:column; line-height:1.1; }
-    .brand-title .h1{ font-weight:650; letter-spacing:.2px; font-size:16px; }
+    .brand-title .h1{ font-weight:800; letter-spacing:.2px; font-size:16px; }
     .brand-title .sub{ color:var(--muted); font-size:12px; margin-top:3px; }
 
     .header-right{ margin-left:auto; display:flex; align-items:center; gap:10px; }
@@ -59,22 +69,23 @@
     }
     .dot{
       width:8px;height:8px;border-radius:999px;
-      background: #22c55e;
-      box-shadow: 0 0 0 4px rgba(34,197,94,.12);
+      background: var(--yellow);
+      box-shadow: 0 0 0 4px rgba(255,210,0,.14);
     }
 
     main{ display:grid; grid-template-columns: 420px 1fr; min-height:0; }
 
     .sidebar{
       border-right:1px solid var(--border);
-      background: radial-gradient(1200px 500px at 0% 0%, rgba(56,189,248,.10), transparent 40%),
-                  linear-gradient(180deg, rgba(16,26,40,.8), rgba(11,15,20,.9));
+      background:
+        radial-gradient(1200px 500px at 0% 0%, rgba(255,210,0,.10), transparent 40%),
+        linear-gradient(180deg, rgba(0,0,0,.65), rgba(7,7,7,.92));
       padding: 12px;
       overflow:auto;
     }
 
     .card{
-      background: rgba(255,255,255,.04);
+      background: var(--panel);
       border:1px solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
@@ -88,7 +99,7 @@
       margin-bottom: 10px;
     }
     .kpi .label{ color:var(--muted); font-size:12px; }
-    .kpi .value{ font-size:22px; font-weight:700; margin-top:2px; }
+    .kpi .value{ font-size:22px; font-weight:900; margin-top:2px; }
 
     .search{ margin: 10px 0; display:flex; gap:8px; }
     input[type="search"], select{
@@ -96,34 +107,35 @@
       padding: 10px 12px;
       border-radius: 12px;
       border:1px solid var(--border);
-      background: rgba(0,0,0,.25);
+      background: rgba(0,0,0,.40);
       color: var(--text);
       outline:none;
     }
-    input[type="search"]::placeholder{ color: rgba(148,163,184,.8); }
+    input[type="search"]::placeholder{ color: rgba(246,246,246,.55); }
 
     .btn{
       padding: 10px 12px;
       border-radius: 12px;
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,210,0,.30);
+      background: rgba(255,210,0,.12);
       color: var(--text);
       cursor:pointer;
-      font-weight:600;
+      font-weight:800;
       white-space:nowrap;
     }
-    .btn:hover{ background: rgba(255,255,255,.10); }
+    .btn:hover{ background: rgba(255,210,0,.18); }
 
     .section-title{
       margin: 10px 0 8px;
-      font-weight:700;
+      font-weight:900;
       font-size:13px;
       color: var(--text);
       display:flex;
       align-items:center;
       justify-content:space-between;
+      letter-spacing:.2px;
     }
-    .section-title .count{ color:var(--muted); font-weight:600; font-size:12px; }
+    .section-title .count{ color:var(--muted); font-weight:800; font-size:12px; }
 
     .list{ margin-top:8px; display:flex; flex-direction:column; gap:8px; }
     .row{
@@ -132,15 +144,15 @@
       gap:6px;
       padding:10px 10px;
       border-radius: 12px;
-      border:1px solid rgba(255,255,255,.08);
-      background: rgba(0,0,0,.18);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.28);
       cursor:pointer;
     }
     .row:hover{
-      border-color: rgba(56,189,248,.35);
-      background: rgba(56,189,248,.08);
+      border-color: rgba(255,210,0,.45);
+      background: rgba(255,210,0,.08);
     }
-    .row .name{ font-weight:650; font-size:13px; }
+    .row .name{ font-weight:900; font-size:13px; }
     .row .meta{
       color:var(--muted);
       font-size:12px;
@@ -149,7 +161,11 @@
       align-items:center;
       flex-wrap:wrap;
     }
-    .row .meta a{ color: var(--accent); text-decoration: none; }
+    .row .meta a{
+      color: var(--yellow2);
+      text-decoration: none;
+      font-weight:900;
+    }
     .row .meta a:hover{ text-decoration: underline; }
     .row .desc{ color:var(--muted); font-size:12px; line-height:1.35; }
 
@@ -157,1059 +173,201 @@
 
     .leaflet-popup-content-wrapper,
     .leaflet-popup-tip {
-      background: #101826;
-      color: #e6edf3;
-      border: 1px solid rgba(255,255,255,0.10);
+      background: #0b0b0b;
+      color: #f6f6f6;
+      border: 1px solid rgba(255,255,255,0.14);
     }
-    .leaflet-popup-content a { color: #7dd3fc; text-decoration:none; }
+    .leaflet-popup-content a { color: var(--yellow2); text-decoration:none; font-weight:900; }
     .leaflet-popup-content a:hover { text-decoration:underline; }
     .leaflet-control-attribution{
-      background: rgba(16,24,38,0.85) !important;
-      color:#cbd5e1 !important;
+      background: rgba(0,0,0,0.82) !important;
+      color:#d8d8d8 !important;
     }
-    .leaflet-control-attribution a{ color:#93c5fd !important; }
+    .leaflet-control-attribution a{ color: var(--yellow2) !important; }
 
-    .pop-h{ color:#94a3b8; font-weight:700; margin-top:10px; }
-    .pop-p{ margin-top:4px; color:#cbd5e1; font-size:12px; line-height:1.35; }
+    .pop-h{ color: rgba(255,210,0,.90); font-weight:900; margin-top:10px; }
+    .pop-p{ margin-top:4px; color:#eaeaea; font-size:12px; line-height:1.35; }
     .pop-links{ margin-top:12px; display:flex; gap:12px; flex-wrap:wrap; }
 
-    /* Permanent station labels for pinned/termini */
+    /* Permanent station labels for pinned/termini + dynamic labels */
     .station-label{
-      background: rgba(15, 23, 34, 0.92);
-      color: #e6edf3;
-      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(0,0,0,0.90);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.18);
       padding: 4px 8px;
       border-radius: 999px;
-      box-shadow: 0 10px 22px rgba(0,0,0,0.35);
-      font-weight: 800;
+      box-shadow: 0 10px 22px rgba(0,0,0,0.55);
+      font-weight: 950;
       font-size: 12px;
       letter-spacing: .2px;
       white-space: nowrap;
+      opacity: 0.95;
     }
-    .station-label.terminus{ border-color: rgba(245,158,11,0.55); }
-    .station-label.pinned{ border-color: rgba(56,189,248,0.55); }
+    .station-label.terminus{ border-color: rgba(255,210,0,0.70); }
+    .station-label.pinned{ border-color: rgba(255,255,255,0.35); }
 
     /* Tools card */
     .tools-row{ display:flex; gap:8px; align-items:center; margin-top:10px; }
     .tool-links{ display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
     .tool-links a{
-      color: var(--accent);
+      color: #111;
       text-decoration: none;
       font-size: 12px;
-      font-weight: 700;
+      font-weight: 950;
       padding: 6px 10px;
-      border: 1px solid rgba(255,255,255,.10);
+      border: 1px solid rgba(255,210,0,.55);
       border-radius: 999px;
-      background: rgba(255,255,255,.05);
+      background: rgba(255,210,0,.92);
     }
-    .tool-links a:hover{ background: rgba(255,255,255,.10); }
+    .tool-links a:hover{ background: rgba(255,210,0,1); }
     .muted{ color: var(--muted); font-size: 12px; }
+
+    /* Toggle row */
+    .toggle-row{
+      margin-top:12px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .toggle-row input{
+      width: 18px;
+      height: 18px;
+      accent-color: var(--yellow);
+    }
   </style>
 </head>
-<body data-cai-parent-url="https://antrail.github.io/rail/index.html">
-<div class="app">
-<header>
-<div class="brand">
-<div class="logo" title="Add your logo file to /assets and update the src below">
-<img alt="Bee Network Rail" src="./Bee Network Rail Dashboard_files/logo.png"/>
-</div>
-<div class="brand-title">
-<div class="h1">Bee Network Rail</div>
-<div class="sub">Map overview and links</div>
-</div>
-</div>
-<div class="header-right">
-<div class="pill"><span class="dot"></span> Static map</div>
-<div class="pill" id="buildStamp">Build: 2026-02-24</div>
-</div>
-</header>
-<main>
-<aside class="sidebar">
-<!-- Tools menu -->
-<div class="card">
-<div class="section-title" style="margin-top:0;">
-<span>Tools</span>
-<span class="count">Resources</span>
-</div>
-<div class="muted">
+
+<body>
+  <div class="app">
+    <header>
+      <div class="brand">
+        <div class="logo" title="Add your logo file to /assets and update the src below">
+          <img src="./assets/bee-network-rail.svg" alt="Bee Network Rail">
+        </div>
+        <div class="brand-title">
+          <div class="h1">Greater Manchester Rail</div>
+          <div class="sub">Pinned hubs + GM termini • Tools • Labels-on-zoom • Rail lines</div>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <div class="pill"><span class="dot"></span> Yellow/Black theme</div>
+        <div class="pill" id="buildStamp">Build: —</div>
+      </div>
+    </header>
+
+    <main>
+      <aside class="sidebar">
+
+        <!-- Tools menu -->
+        <div class="card">
+          <div class="section-title" style="margin-top:0;">
+            <span>Tools</span>
+            <span class="count">Resources</span>
+          </div>
+
+          <div class="muted">
             Quick links to operational resources. Use the dropdown to open in a new tab.
           </div>
-<div class="tools-row">
-<select aria-label="Tools menu" id="toolSelect">
-<option value="">Choose a tool…</option>
-<option value="ccil">CCIL log</option>
-<option value="rtt">Realtime Trains</option>
-<option value="nre">National Rail Enquiries</option>
-</select>
-<button class="btn" id="openToolBtn" type="button">Open</button>
-</div>
-<div class="tool-links">
-<a href="https://ccil.clyx.net/CCIL/NewApplication/Default.aspx" rel="noopener" target="_blank">CCIL log</a>
-<a href="https://www.realtimetrains.co.uk/" rel="noopener" target="_blank">Realtime Trains</a>
-<a href="https://www.nationalrail.co.uk/" rel="noopener" target="_blank">National Rail Enquiries</a>
-</div>
-</div>
-<div style="height:12px"></div>
-<div class="kpis">
-<div class="card kpi">
-<div class="label">Stations loaded</div>
-<div class="value" id="kpiStations">100</div>
-</div>
-<div class="card kpi">
-<div class="label">Showing</div>
-<div class="value" id="kpiShowing">100</div>
-</div>
-</div>
-<div class="card">
-<div class="section-title">
-<span>Find a station</span>
-<span class="count" id="resultCount">All: 100</span>
-</div>
-<div class="search">
-<input autocomplete="off" id="q" placeholder="Search station name…" type="search"/>
-<button class="btn" id="clearBtn" title="Clear" type="button">Clear</button>
-</div>
-<div class="section-title">
-<span>Stations</span>
-<span class="count" id="listCount">100 listed</span>
-</div>
-<div class="list" id="list"><div class="row">
-<div class="name">Altrincham</div>
-<div class="meta">
-<span>CRS: ALT</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/alt/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/ALT" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Ardwick</div>
-<div class="meta">
-<span>CRS: ADK</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/adk/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/ADK" rel="noopener" target="_blank">Realtime</a>
-</div>
-<div class="desc">Ardwick Station has a very limited service. Two trains a day run towards the city on Monday to Friday mornings, and two trains away from the city in the evening. No service at weekends.</div>
-</div><div class="row">
-<div class="name">Ashburys</div>
-<div class="meta">
-<span>CRS: ABY</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/aby/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/ABY" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Ashton-under-Lyne</div>
-<div class="meta">
-<span>CRS: AHN</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/ahn/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/AHN" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Atherton</div>
-<div class="meta">
-<span>CRS: ATN</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/atn/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/ATN" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Belle Vue</div>
-<div class="meta">
-<span>CRS: BLV</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/blv/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/BLV" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Blackrod</div>
-<div class="meta">
-<span>CRS: BLK</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/blk/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/BLK" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Bolton</div>
-<div class="meta">
-<span>CRS: BON</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/bon/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/BON" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Bramhall</div>
-<div class="meta">
-<span>CRS: BML</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/bml/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/BML" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Bredbury</div>
-<div class="meta">
-<span>CRS: BDY</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/bdy/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/BDY" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Brinnington</div>
-<div class="meta">
-<span>CRS: BNT</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/bnt/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/BNT" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Broadbottom</div>
-<div class="meta">
-<span>CRS: BDB</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/bdb/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/BDB" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Bromley Cross</div>
-<div class="meta">
-<span>CRS: BMC</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/bmc/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/BMC" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Bryn</div>
-<div class="meta">
-<span>CRS: BYN</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/byn/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/BYN" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Burnage</div>
-<div class="meta">
-<span>CRS: BNA</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/bna/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/BNA" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Burrs Country Park Halt</div>
-<div class="meta">
-<span>CRS: —</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Bury, Bolton Street</div>
-<div class="meta">
-<span>CRS: —</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Castleton</div>
-<div class="meta">
-<span>CRS: CAS</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/cas/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/CAS" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Chassen Road</div>
-<div class="meta">
-<span>CRS: CSR</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/csr/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/CSR" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Cheadle Hulme</div>
-<div class="meta">
-<span>CRS: CHU</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/chu/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/CHU" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Clifton</div>
-<div class="meta">
-<span>CRS: CLI</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/cli/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/CLI" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Daisy Hill</div>
-<div class="meta">
-<span>CRS: DSY</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/dsy/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/DSY" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Davenport</div>
-<div class="meta">
-<span>CRS: DVN</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/dvn/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/DVN" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Deansgate</div>
-<div class="meta">
-<span>CRS: DGT</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/dgt/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/DGT" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Denton</div>
-<div class="meta">
-<span>CRS: DTN</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/dtn/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/DTN" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">East Didsbury</div>
-<div class="meta">
-<span>CRS: EDY</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/edy/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/EDY" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Eccles</div>
-<div class="meta">
-<span>CRS: ECC</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/ecc/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/ECC" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Fairfield</div>
-<div class="meta">
-<span>CRS: FRF</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/frf/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/FRF" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Farnworth</div>
-<div class="meta">
-<span>CRS: FNW</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/fnw/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/FNW" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Flixton</div>
-<div class="meta">
-<span>CRS: FLI</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/fli/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/FLI" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Flowery Field</div>
-<div class="meta">
-<span>CRS: FLF</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/flf/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/FLF" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Gathurst</div>
-<div class="meta">
-<span>CRS: GST</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/gst/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/GST" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Gatley</div>
-<div class="meta">
-<span>CRS: GTY</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/gty/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/GTY" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Godley</div>
-<div class="meta">
-<span>CRS: GDL</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/gdl/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/GDL" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Gorton</div>
-<div class="meta">
-<span>CRS: GTO</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/gto/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/GTO" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Greenfield</div>
-<div class="meta">
-<span>CRS: GNF</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/gnf/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/GNF" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Guide Bridge</div>
-<div class="meta">
-<span>CRS: GUI</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/gui/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/GUI" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Hag Fold</div>
-<div class="meta">
-<span>CRS: HGF</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/hgf/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/HGF" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Hale</div>
-<div class="meta">
-<span>CRS: HAL</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/hal/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/HAL" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Hall Drive</div>
-<div class="meta">
-<span>CRS: —</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Hall i' th' Wood</div>
-<div class="meta">
-<span>CRS: HID</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/hid/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/HID" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Hattersley</div>
-<div class="meta">
-<span>CRS: HTY</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/hty/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/HTY" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Hazel Grove</div>
-<div class="meta">
-<span>CRS: HAZ</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/haz/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/HAZ" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Heald Green</div>
-<div class="meta">
-<span>CRS: HDG</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/hdg/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/HDG" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Heaton Chapel</div>
-<div class="meta">
-<span>CRS: HTC</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/htc/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/HTC" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Heywood</div>
-<div class="meta">
-<span>CRS: —</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Hindley</div>
-<div class="meta">
-<span>CRS: HIN</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/hin/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/HIN" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Horwich Parkway</div>
-<div class="meta">
-<span>CRS: HWI</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/hwi/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/HWI" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Humphrey Park</div>
-<div class="meta">
-<span>CRS: HUP</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/hup/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/HUP" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Hyde Central</div>
-<div class="meta">
-<span>CRS: HYC</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/hyc/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/HYC" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Hyde North</div>
-<div class="meta">
-<span>CRS: HYT</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/hyt/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/HYT" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Ince</div>
-<div class="meta">
-<span>CRS: INC</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/inc/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/INC" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Irlam</div>
-<div class="meta">
-<span>CRS: IRL</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/irl/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/IRL" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Kearsley</div>
-<div class="meta">
-<span>CRS: KSL</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/ksl/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/KSL" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Levenshulme</div>
-<div class="meta">
-<span>CRS: LVM</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/lvm/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/LVM" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Littleborough</div>
-<div class="meta">
-<span>CRS: LTL</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/ltl/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/LTL" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Lostock</div>
-<div class="meta">
-<span>CRS: LOT</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/lot/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/LOT" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Manchester Airport</div>
-<div class="meta">
-<span>CRS: MIA</span>
-<span>•</span><span style="color:#7dd3fc;font-weight:700;">Pinned hub</span>
-<span>•</span><span style="color:#fbbf24;font-weight:700;">GM terminus</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/mia/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/MIA" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Manchester Oxford Road</div>
-<div class="meta">
-<span>CRS: MCO</span>
-<span>•</span><span style="color:#7dd3fc;font-weight:700;">Pinned hub</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/mco/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/MCO" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Manchester Piccadilly</div>
-<div class="meta">
-<span>CRS: MAN</span>
-<span>•</span><span style="color:#7dd3fc;font-weight:700;">Pinned hub</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/man/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/MAN" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Manchester Victoria</div>
-<div class="meta">
-<span>CRS: MCV</span>
-<span>•</span><span style="color:#7dd3fc;font-weight:700;">Pinned hub</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/mcv/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/MCV" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Marple</div>
-<div class="meta">
-<span>CRS: MPL</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/mpl/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/MPL" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Mauldeth Road</div>
-<div class="meta">
-<span>CRS: MAU</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/mau/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/MAU" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Middlewood</div>
-<div class="meta">
-<span>CRS: MDL</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/mdl/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/MDL" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Mills Hill</div>
-<div class="meta">
-<span>CRS: MIH</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/mih/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/MIH" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Moorside</div>
-<div class="meta">
-<span>CRS: MSD</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/msd/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/MSD" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Moses Gate</div>
-<div class="meta">
-<span>CRS: MSS</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/mss/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/MSS" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Mossley</div>
-<div class="meta">
-<span>CRS: MSL</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/msl/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/MSL" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Moston</div>
-<div class="meta">
-<span>CRS: MSO</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/mso/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/MSO" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Navigation Road</div>
-<div class="meta">
-<span>CRS: NVR</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/nvr/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/NVR" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Newton for Hyde</div>
-<div class="meta">
-<span>CRS: NWN</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/nwn/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/NWN" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Orrell</div>
-<div class="meta">
-<span>CRS: ORR</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/orr/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/ORR" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Patricroft</div>
-<div class="meta">
-<span>CRS: PAT</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/pat/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/PAT" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Pemberton</div>
-<div class="meta">
-<span>CRS: PEM</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/pem/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/PEM" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Ramsbottom</div>
-<div class="meta">
-<span>CRS: —</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Reddish North</div>
-<div class="meta">
-<span>CRS: RDN</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/rdn/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/RDN" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Reddish South</div>
-<div class="meta">
-<span>CRS: RDS</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/rds/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/RDS" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Rochdale</div>
-<div class="meta">
-<span>CRS: RCD</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/rcd/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/RCD" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Romiley</div>
-<div class="meta">
-<span>CRS: RML</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/rml/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/RML" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Rose Hill Marple</div>
-<div class="meta">
-<span>CRS: RSH</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/rsh/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/RSH" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Ryder Brow</div>
-<div class="meta">
-<span>CRS: RRB</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/rrb/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/RRB" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Salford Central</div>
-<div class="meta">
-<span>CRS: SFD</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/sfd/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/SFD" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Salford Crescent</div>
-<div class="meta">
-<span>CRS: SLD</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/sld/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/SLD" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Smithy Bridge</div>
-<div class="meta">
-<span>CRS: SMB</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/smb/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/SMB" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Stalybridge</div>
-<div class="meta">
-<span>CRS: SYB</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/syb/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/SYB" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Stockport</div>
-<div class="meta">
-<span>CRS: SPT</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/spt/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/SPT" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Strines</div>
-<div class="meta">
-<span>CRS: SRN</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/srn/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/SRN" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Summerseat</div>
-<div class="meta">
-<span>CRS: —</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Swinton (Manchester)</div>
-<div class="meta">
-<span>CRS: SNN</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/snn/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/SNN" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Trafford Park</div>
-<div class="meta">
-<span>CRS: TRA</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/tra/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/TRA" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Trencherbone Platform</div>
-<div class="meta">
-<span>CRS: —</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Urmston</div>
-<div class="meta">
-<span>CRS: URM</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/urm/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/URM" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Walkden</div>
-<div class="meta">
-<span>CRS: WKD</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/wkd/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/WKD" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Walker Gardens</div>
-<div class="meta">
-<span>CRS: —</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Westhoughton</div>
-<div class="meta">
-<span>CRS: WHG</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/whg/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/WHG" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Whitehead Lane</div>
-<div class="meta">
-<span>CRS: —</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Wigan North Western</div>
-<div class="meta">
-<span>CRS: WGN</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/wgn/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/WGN" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Wigan Wallgate</div>
-<div class="meta">
-<span>CRS: WGW</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/wgw/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/WGW" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Woodley</div>
-<div class="meta">
-<span>CRS: WLY</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/wly/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/WLY" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div><div class="row">
-<div class="name">Woodsmoor</div>
-<div class="meta">
-<span>CRS: WSR</span>
-<span>•</span>
-<a href="https://www.nationalrail.co.uk/stations/wsr/" rel="noopener" target="_blank">NRE</a>
-<span>•</span>
-<a href="https://www.realtimetrains.co.uk/search/detailed/WSR" rel="noopener" target="_blank">Realtime</a>
-</div>
-</div></div>
-</div>
-<div style="height:12px"></div>
-<div class="card">
-<div class="section-title"><span>Selected</span></div>
-<div class="muted" id="selected">Daisy Hill (DSY)</div>
-<div class="muted" style="margin-top:8px;">
+
+          <div class="tools-row">
+            <select id="toolSelect" aria-label="Tools menu">
+              <option value="">Choose a tool…</option>
+              <option value="ccil">CCIL log</option>
+              <option value="rtt">Realtime Trains</option>
+              <option value="nre">National Rail Enquiries</option>
+            </select>
+            <button class="btn" id="openToolBtn" type="button">Open</button>
+          </div>
+
+          <div class="tool-links">
+            <a href="https://ccil.clyx.net/CCIL/NewApplication/Default.aspx" target="_blank" rel="noopener">CCIL log</a>
+            <a href="https://www.realtimetrains.co.uk/" target="_blank" rel="noopener">Realtime Trains</a>
+            <a href="https://www.nationalrail.co.uk/" target="_blank" rel="noopener">National Rail Enquiries</a>
+          </div>
+
+          <!-- Labels toggle -->
+          <div class="toggle-row">
+            <input id="showAllLabels" type="checkbox" />
+            <label for="showAllLabels" class="muted" style="cursor:pointer;">
+              Show all station names (zoomed in)
+            </label>
+          </div>
+          <div class="muted" style="margin-top:6px;">
+            Tip: labels appear from zoom level <b>13</b>.
+          </div>
+
+          <!-- Rail lines toggle -->
+          <div class="toggle-row">
+            <input id="showRailLines" type="checkbox" checked />
+            <label for="showRailLines" class="muted" style="cursor:pointer;">
+              Show rail lines
+            </label>
+          </div>
+          <div class="muted" style="margin-top:6px;">
+            Rail lines load from <b>data/railways.geojson</b> (if present).
+          </div>
+        </div>
+
+        <div style="height:12px"></div>
+
+        <div class="kpis">
+          <div class="card kpi">
+            <div class="label">Stations loaded</div>
+            <div class="value" id="kpiStations">0</div>
+          </div>
+          <div class="card kpi">
+            <div class="label">Showing</div>
+            <div class="value" id="kpiShowing">0</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="section-title">
+            <span>Find a station</span>
+            <span class="count" id="resultCount">—</span>
+          </div>
+
+          <div class="search">
+            <input id="q" type="search" placeholder="Search station name…" autocomplete="off">
+            <button class="btn" id="clearBtn" title="Clear" type="button">Clear</button>
+          </div>
+
+          <div class="section-title">
+            <span>Stations</span>
+            <span class="count" id="listCount">—</span>
+          </div>
+
+          <div class="list" id="list"></div>
+        </div>
+
+        <div style="height:12px"></div>
+
+        <div class="card">
+          <div class="section-title"><span>Selected</span></div>
+          <div id="selected" class="muted">Click a marker or a station in the list.</div>
+          <div class="muted" style="margin-top:8px;">
             GM termini pinned by default: <b>Manchester Airport (MIA)</b>, <b>Rose Hill Marple (RHM)</b>.
           </div>
-</div>
-</aside>
-<div id="map"></div>
-</main>
-</div>
-<script src="./Bee Network Rail Dashboard_files/leaflet.js"></script>
-<script>
+        </div>
+
+      </aside>
+
+      <div id="map"></div>
+    </main>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <script>
     /**********************
      * PINNED + TERMINI
      **********************/
-    const PINNED_HUBS_CRS = new Set([
-      "MAN", // Manchester Piccadilly
-      "MCO", // Manchester Oxford Road
-      "MCV", // Manchester Victoria
-      "BOL", // Bolton
-      "MIA"  // Manchester Airport
-    ]);
+    const PINNED_HUBS_CRS = new Set(["MAN","MCO","MCV","BOL","MIA"]);
+    const GM_TERMINI_CRS  = new Set(["MIA","RHM"]);
 
-    const GM_TERMINI_CRS = new Set([
-      "MIA", // Manchester Airport
-      "RHM"  // Rose Hill Marple
-    ]);
+    const LABEL_ZOOM_THRESHOLD = 13;
+    let showAllLabelsEnabled = false;
 
     document.getElementById("buildStamp").textContent =
       "Build: " + new Date().toISOString().slice(0,10);
@@ -1220,7 +378,6 @@
       rtt:  "https://www.realtimetrains.co.uk/",
       nre:  "https://www.nationalrail.co.uk/"
     };
-
     document.getElementById("openToolBtn").addEventListener("click", () => {
       const key = document.getElementById("toolSelect").value;
       const url = TOOL_URLS[key];
@@ -1229,7 +386,6 @@
 
     // Map
     const map = L.map("map", { zoomControl: true }).setView([53.48, -2.24], 10);
-
     L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
       subdomains: "abcd",
       maxZoom: 19,
@@ -1240,19 +396,24 @@
     let markerLayer = null;
     const markerById = new Map();
 
+    // Rail line layers
+    let railwaysGeojson = null;
+    let railLayerCasing = null;
+    let railLayerInner = null;
+
+    // Track dynamically-added (non pinned/terminus) labels so we can toggle quickly
+    const dynamicLabelLayers = new Map(); // id -> Leaflet layer
+
     function featureId(f, idx){
       return (f.id || f.properties?.["@id"] || f.properties?.id || ("idx:" + idx));
     }
-
     function getCrs(props){
       return String(props?.crs ?? props?.["ref:crs"] ?? "").toUpperCase();
     }
-
     function getWikidataQid(props){
       const q = String(props?.wikidata ?? props?.["network:wikidata"] ?? "").trim();
       return /^Q\d+$/i.test(q) ? q.toUpperCase() : "";
     }
-
     function escapeHtml(s){
       return String(s || "")
         .replaceAll("&","&amp;")
@@ -1261,19 +422,16 @@
         .replaceAll('"',"&quot;")
         .replaceAll("'","&#039;");
     }
-
     function routesDescription(props){
       const d = String(props?.description ?? "").trim();
       if (!d) return null;
       return d.length > 240 ? (d.slice(0, 240) + "…") : d;
     }
-
     function nreLink(props){
       const direct = props?.["network:website"];
       if (direct && /^https:\/\/www\.nationalrail\.co\.uk\/stations\//i.test(direct)) return direct;
       return "https://www.nationalrail.co.uk/stations/";
     }
-
     function rttLink(props){
       const crs = getCrs(props);
       if (crs) return `https://www.realtimetrains.co.uk/search/detailed/${encodeURIComponent(crs)}`;
@@ -1299,7 +457,6 @@
     function storeWiki(qid, obj){
       try{ localStorage.setItem("wikiSummary:" + qid, JSON.stringify(obj)); } catch {}
     }
-
     async function fetchWikipediaSummaryFromWikidata(qid){
       const wdUrl = `https://www.wikidata.org/wiki/Special:EntityData/${encodeURIComponent(qid)}.json`;
       const wdRes = await fetch(wdUrl, { headers: { "Accept": "application/json" } });
@@ -1321,25 +478,20 @@
         url: String(wp?.content_urls?.desktop?.page ?? "")
       };
     }
-
     async function getWikiSummary(qid){
       if (!qid) return null;
-
       if (wikiMemCache.has(qid)) {
         const obj = wikiMemCache.get(qid);
         if (Date.now() - obj.ts <= WIKI_TTL_MS) return obj;
       }
-
       const stored = loadStoredWiki(qid);
       if (stored) { wikiMemCache.set(qid, stored); return stored; }
-
       const { title, extract, url } = await fetchWikipediaSummaryFromWikidata(qid);
       const obj = { ts: Date.now(), title, extract, url };
       wikiMemCache.set(qid, obj);
       storeWiki(qid, obj);
       return obj;
     }
-
     function truncate(s, n){
       const t = String(s || "").trim();
       if (!t) return "";
@@ -1350,14 +502,19 @@
       return String(name || "").replace(/^Manchester\s+/i, "Manchester ").trim();
     }
 
+    function isPinnedOrTerminus(crs){
+      return PINNED_HUBS_CRS.has(crs) || GM_TERMINI_CRS.has(crs);
+    }
+
+    // Marker styles: default (grey/yellow), pinned (white/yellow), terminus (yellow)
     function markerStyleFor(f){
       const crs = getCrs(f.properties);
       const isTerminus = GM_TERMINI_CRS.has(crs);
       const isPinned = PINNED_HUBS_CRS.has(crs);
 
-      if (isTerminus) return { radius: 8, weight: 3, color: "#fbbf24", fillColor: "#f59e0b", fillOpacity: 0.95 };
-      if (isPinned)   return { radius: 8, weight: 3, color: "#7dd3fc", fillColor: "#38bdf8", fillOpacity: 0.95 };
-      return { radius: 6, weight: 2, color: "#93c5fd", fillColor: "#38bdf8", fillOpacity: 0.9 };
+      if (isTerminus) return { radius: 8, weight: 3, color: "#ffd200", fillColor: "#ffd200", fillOpacity: 0.95 };
+      if (isPinned)   return { radius: 8, weight: 3, color: "#ffffff", fillColor: "#ffd200", fillOpacity: 0.95 };
+      return { radius: 6, weight: 2, color: "rgba(255,255,255,.35)", fillColor: "rgba(255,210,0,.85)", fillOpacity: 0.85 };
     }
 
     function maybeBindPermanentLabel(layer, f){
@@ -1365,7 +522,6 @@
       const name = f.properties?.name ?? "Station";
       const isTerminus = GM_TERMINI_CRS.has(crs);
       const isPinned = PINNED_HUBS_CRS.has(crs);
-
       if (!isPinned && !isTerminus) return;
 
       const cls = isTerminus ? "station-label terminus" : "station-label pinned";
@@ -1378,6 +534,45 @@
       });
     }
 
+    function bindDynamicLabel(layer, f){
+      const name = f.properties?.name ?? "Station";
+      layer.bindTooltip(stationLabelText(name), {
+        permanent: true,
+        direction: "right",
+        offset: [10, 0],
+        opacity: 1,
+        className: "station-label"
+      });
+    }
+
+    function updateAllStationLabels(){
+      const zoomOk = map.getZoom() >= LABEL_ZOOM_THRESHOLD;
+      const shouldShow = showAllLabelsEnabled && zoomOk;
+
+      if (!markerLayer) return;
+
+      markerLayer.eachLayer(layer => {
+        const f = layer.feature;
+        const crs = getCrs(f.properties);
+        const id = featureId(f, 0);
+
+        // Keep pinned/termini labels always visible
+        if (isPinnedOrTerminus(crs)) return;
+
+        if (shouldShow) {
+          if (!dynamicLabelLayers.has(id)) {
+            bindDynamicLabel(layer, f);
+            dynamicLabelLayers.set(id, layer);
+          }
+        } else {
+          if (dynamicLabelLayers.has(id)) {
+            layer.unbindTooltip();
+            dynamicLabelLayers.delete(id);
+          }
+        }
+      });
+    }
+
     function popupHtml(name, crs, props, stationKey){
       const desc = routesDescription(props);
       const qid = getWikidataQid(props);
@@ -1385,23 +580,18 @@
       const rtt = rttLink(props);
 
       const aboutBlock = desc
-        ? `
-          <div class="pop-h">Routes served</div>
-          <div class="pop-p">${escapeHtml(desc)}</div>
-        `
-        : `
-          <div class="pop-h">About this station</div>
-          <div class="pop-p">
-            <span class="wiki-summary" data-qid="${escapeHtml(qid)}" data-key="${escapeHtml(stationKey)}">
-              ${qid ? "Loading Wikipedia summary…" : "No Wikidata tag found for this station."}
-            </span>
-          </div>
-        `;
+        ? `<div class="pop-h">Routes served</div><div class="pop-p">${escapeHtml(desc)}</div>`
+        : `<div class="pop-h">About this station</div>
+           <div class="pop-p">
+             <span class="wiki-summary" data-qid="${escapeHtml(qid)}" data-key="${escapeHtml(stationKey)}">
+               ${qid ? "Loading Wikipedia summary…" : "No Wikidata tag found for this station."}
+             </span>
+           </div>`;
 
       return `
         <div style="min-width:260px">
-          <div style="font-weight:700; font-size:14px;">${escapeHtml(name)}</div>
-          ${crs ? `<div style="color:#94a3b8; margin-top:2px;">CRS: ${escapeHtml(crs)}</div>` : ``}
+          <div style="font-weight:950; font-size:14px;">${escapeHtml(name)}</div>
+          ${crs ? `<div style="color:var(--muted); margin-top:2px;">CRS: ${escapeHtml(crs)}</div>` : ``}
           ${aboutBlock}
           <div class="pop-links">
             <a href="${nre}" target="_blank" rel="noopener">National Rail Enquiries</a>
@@ -1471,6 +661,10 @@
         markerById.set(id, layer);
       });
 
+      // refresh dynamic labels whenever markers are redrawn
+      dynamicLabelLayers.clear();
+      updateAllStationLabels();
+
       return markerLayer;
     }
 
@@ -1491,7 +685,6 @@
 
         const nre = nreLink(f.properties);
         const rtt = rttLink(f.properties);
-
         const desc = routesDescription(f.properties);
 
         const el = document.createElement("div");
@@ -1500,8 +693,8 @@
           <div class="name">${escapeHtml(name)}</div>
           <div class="meta">
             <span>${crs ? "CRS: " + escapeHtml(crs) : "CRS: —"}</span>
-            ${PINNED_HUBS_CRS.has(crs) ? `<span>•</span><span style="color:#7dd3fc;font-weight:700;">Pinned hub</span>` : ``}
-            ${GM_TERMINI_CRS.has(crs) ? `<span>•</span><span style="color:#fbbf24;font-weight:700;">GM terminus</span>` : ``}
+            ${PINNED_HUBS_CRS.has(crs) ? `<span>•</span><span style="color:var(--yellow2);font-weight:950;">Pinned hub</span>` : ``}
+            ${GM_TERMINI_CRS.has(crs) ? `<span>•</span><span style="color:var(--yellow);font-weight:950;">GM terminus</span>` : ``}
             <span>•</span>
             <a href="${nre}" target="_blank" rel="noopener">NRE</a>
             <span>•</span>
@@ -1545,6 +738,77 @@
       }
     }
 
+    /**********************
+     * Railways layer
+     * - Draw casing + inner stroke to look "joined up"
+     * - Rounded joins/caps for continuous appearance
+     **********************/
+    function buildRailLayers(geojson){
+      // Remove old layers if exist
+      if (railLayerCasing) railLayerCasing.remove();
+      if (railLayerInner) railLayerInner.remove();
+
+      // Casing (dark outline)
+      railLayerCasing = L.geoJSON(geojson, {
+        style: () => ({
+          color: "rgba(0,0,0,0.85)",
+          weight: 5,
+          opacity: 1,
+          lineCap: "round",
+          lineJoin: "round"
+        })
+      });
+
+      // Inner (yellow line)
+      railLayerInner = L.geoJSON(geojson, {
+        style: () => ({
+          color: "rgba(255,210,0,0.85)",
+          weight: 3,
+          opacity: 1,
+          lineCap: "round",
+          lineJoin: "round"
+        })
+      });
+
+      // Add in correct order under stations
+      const show = document.getElementById("showRailLines").checked;
+      if (show) {
+        railLayerCasing.addTo(map);
+        railLayerInner.addTo(map);
+
+        // keep rail lines behind station markers
+        if (railLayerCasing.bringToBack) railLayerCasing.bringToBack();
+        if (railLayerInner.bringToBack) railLayerInner.bringToBack();
+      }
+    }
+
+    function setRailVisibility(on){
+      if (!railLayerCasing || !railLayerInner) return;
+      if (on) {
+        if (!map.hasLayer(railLayerCasing)) railLayerCasing.addTo(map);
+        if (!map.hasLayer(railLayerInner)) railLayerInner.addTo(map);
+        railLayerCasing.bringToBack();
+        railLayerInner.bringToBack();
+      } else {
+        if (map.hasLayer(railLayerCasing)) railLayerCasing.remove();
+        if (map.hasLayer(railLayerInner)) railLayerInner.remove();
+      }
+    }
+
+    async function tryLoadRailways(){
+      try{
+        const res = await fetch("./data/railways.geojson");
+        if (!res.ok) return; // silently ignore if missing
+        railwaysGeojson = await res.json();
+
+        // Only draw if it looks like GeoJSON with features
+        if (!railwaysGeojson || !railwaysGeojson.type) return;
+        buildRailLayers(railwaysGeojson);
+      } catch {
+        // ignore
+      }
+    }
+
     async function loadStations(){
       const res = await fetch("./data/stations.geojson");
       if (!res.ok) throw new Error(`Failed to load stations.geojson (${res.status})`);
@@ -1563,26 +827,29 @@
       }
     }
 
+    // UI wiring
     document.getElementById("q").addEventListener("input", applyFilter);
     document.getElementById("clearBtn").addEventListener("click", () => {
       document.getElementById("q").value = "";
       applyFilter();
     });
 
-    
-// Ensure Leaflet calculates size correctly (fixes popups/labels drifting)
-window.addEventListener('load', () => {
-  setTimeout(() => { try { map.invalidateSize(); } catch(e){} }, 50);
-});
+    // Labels toggle + zoom behaviour
+    const showAllLabelsEl = document.getElementById("showAllLabels");
+    showAllLabelsEl.addEventListener("change", () => {
+      showAllLabelsEnabled = showAllLabelsEl.checked;
+      updateAllStationLabels();
+    });
+    map.on("zoomend", updateAllStationLabels);
 
-loadStations().catch(err => {
-  const msg = err && err.message ? err.message : String(err);
-  alert(msg + "
+    // Rail lines toggle
+    document.getElementById("showRailLines").addEventListener("change", (e) => {
+      setRailVisibility(e.target.checked);
+    });
 
-" +
-    "If you opened this as a local file (file://), the browser may block fetch().
-" +
-    "Run a quick local web server (e.g. \"python -m http.server\") or host the folder, then open http://localhost:8000/.");
-});
+    // Boot
+    loadStations().catch(err => alert(err.message));
+    tryLoadRailways();
   </script>
-</body></html>
+</body>
+</html>
